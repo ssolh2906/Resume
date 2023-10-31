@@ -357,14 +357,14 @@ fun checkPermissions(context: Context): Boolean {
     // on below line we are creating a variable for writing to external storage permission
     var writeStoragePermission = ContextCompat.checkSelfPermission(
         context,
-        Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
 
     // on below line we are creating a variable for
     // reading external storage permission
     var readStoragePermission = ContextCompat.checkSelfPermission(
         context,
-        Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+        android.Manifest.permission.READ_EXTERNAL_STORAGE
     )
 
     // on below line we are returning true if both the
@@ -380,7 +380,8 @@ fun requestPermission(activity: Activity) {
     ActivityCompat.requestPermissions(
         activity,
         arrayOf(
-            Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
         ), 101
     )
 }
