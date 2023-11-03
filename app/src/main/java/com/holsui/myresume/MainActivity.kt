@@ -1,5 +1,6 @@
 package com.holsui.myresume
 
+import android.graphics.Bitmap
 import android.graphics.Rect
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -34,26 +35,43 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                ResumeScreen()
+                ResumeScreen(SnapshotState.STATE_IDLE, false, {}) // TODO: Replace to Real value
             }
         }
     }
 
     @Composable
     @OptIn(ExperimentalMaterial3Api::class)
-    private fun ResumeScreen() {
+    private fun ResumeScreen(
+        snapshotState: SnapshotState,
+        takingSnapshot: Boolean,
+        onSnapshotTaken: (Pair<Rect, Bitmap>) -> Unit,
+    ) {
         var rectSize by remember { mutableStateOf(IntSize(0, 0)) }
         var captureRect: Rect? by remember { mutableStateOf(null) }
 
         Surface(
-            modifier = Modifier.fillMaxSize()
-                .aspectRatio(8.5f/11f)
+            modifier = Modifier
+                .fillMaxSize()
+                .aspectRatio(8.5f / 11f)
                 .onSizeChanged { size ->
-                    rectSize = size}
+                    rectSize = size
+                }
                 .onGloballyPositioned {
                     captureRect = getAbsoluteRect(layoutCoordinate = it, rectSize = rectSize)
                 },
         ) {
+            if (snapshotState == SnapshotState.STATE_CAPTURE && !takingSnapshot) {
+                captureRect?.let { rect ->
+                    val bitmap = Bitmap.createBitmap(
+                        rectSize.width,
+                        rectSize.height,
+                        Bitmap.Config.ARGB_8888
+                    )
+                    onSnapshotTaken.invoke(Pair(rect, bitmap))
+                }
+            }
+
             Scaffold(
                 topBar = {
                     TopAppBar(
