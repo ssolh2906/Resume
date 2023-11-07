@@ -26,6 +26,10 @@ class MainActivity : ComponentActivity() {
                     },
                     resumeClickListener = object : ResumeClickListener {
                         override fun onGeneratePDFButtonClick() {
+                            viewModel.snapshotReady()
+                        }
+
+                        override fun onSnapshotReady() {
                             viewModel.takeSnapshot()
                         }
                     })
