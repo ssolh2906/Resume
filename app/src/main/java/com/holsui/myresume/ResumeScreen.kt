@@ -3,6 +3,7 @@ package com.holsui.myresume
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
@@ -35,8 +37,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 
 private const val LETTER_RATIO = 8.5f / 11f
-
-const val TAG = "SSSSSS"
 
 interface ResumeClickListener {
     fun onGeneratePDFButtonClick() = Unit
@@ -93,7 +93,6 @@ fun ResumeScreen(
             },
             floatingActionButton = {
                 Button(onClick = {
-                    Log.d(TAG, "ResumeScreen: button click")
                     resumeClickListener.onGeneratePDFButtonClick()
                 }) {
                     Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)

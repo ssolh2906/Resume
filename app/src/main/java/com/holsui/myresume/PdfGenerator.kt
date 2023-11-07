@@ -129,8 +129,7 @@ fun pdfGenerator() {
 
 // on below line we are creating a generate PDF
 // method which is use to generate our PDF file.
-fun generatePDF(context: Context, rect: Rect, bitmap: Bitmap) {
-    Log.d(TAG, "generatePDF: ")
+private fun generatePDF2(context: Context, rect: Rect, bitmap: Bitmap) {
     // declaring width and height
     // for our PDF file.
     var pageHeight = rect.height()

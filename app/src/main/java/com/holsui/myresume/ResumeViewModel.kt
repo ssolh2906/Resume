@@ -8,7 +8,6 @@ class ResumeViewModel: ViewModel() {
     var snapshotState = MutableStateFlow(SnapshotState.STATE_IDLE)
 
     fun takeSnapshot() {
-        Log.d(TAG, "takeSnapshot: VIEWMODEL")
         if (snapshotState.value == SnapshotState.STATE_IDLE) {
             snapshotState.value = SnapshotState.STATE_CAPTURE
         }
