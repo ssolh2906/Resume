@@ -1,5 +1,6 @@
 package com.holsui.myresume
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.util.Log
@@ -38,6 +39,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -65,9 +67,9 @@ fun ResumeScreen(
 
     Surface(
         modifier = Modifier
-            .background(Color.Cyan)
-            .fillMaxSize()
+            .background(Color.LightGray)
             .aspectRatio(LETTER_RATIO)
+            .fillMaxSize()
             .onSizeChanged { size ->
                 rectSize = size
             }
@@ -109,6 +111,7 @@ fun ResumeScreen(
         ) {
             Box(
                 modifier = Modifier
+                    .fillMaxSize()
                     .padding(it)
             ) {
                 Column {
@@ -143,4 +146,15 @@ private fun getAbsoluteRect(
     val top = offsetY.toInt()
     val left = offsetX.toInt()
     return Rect(left, top, left + rectSize.width, top + rectSize.height)
+}
+
+@SuppressLint("UnrememberedMutableState")
+@Composable
+@Preview
+fun PreviewResume() {
+    ResumeScreen(
+        snapshotState = mutableStateOf(SnapshotState.STATE_IDLE),
+        onBitmapSnapshotTaken = { _, _ ->  },
+        resumeClickListener = ResumeClickListener.EMPTY
+    )
 }
