@@ -2,6 +2,7 @@ package com.holsui.myresume
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
@@ -38,13 +39,13 @@ fun pdfGenerator() {
 
     // on below line we are creating a variable for
     // our context and activity and initializing it.
-    val ctx = LocalContext.current
+    val context = LocalContext.current
     val activity = (LocalContext.current as? Activity)
 
     // on below line we are checking permission
-    if (checkPermissions(ctx)) {
+    if (checkPermissions(context)) {
         // if permission is granted we are displaying a toast message.
-        Toast.makeText(ctx, "Permissions Granted..", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Permissions Granted..", Toast.LENGTH_SHORT).show()
     } else {
         // if the permission is not granted
         // we are calling request permission method.
@@ -116,7 +117,7 @@ fun pdfGenerator() {
 
                 // inside on click we are calling our
                 // generate PDF method to generate our PDF
-                generatePDF(ctx)
+//                generatePDF(context)
             }) {
 
             // on the below line we are displaying a text for our button.
@@ -128,7 +129,7 @@ fun pdfGenerator() {
 
 // on below line we are creating a generate PDF
 // method which is use to generate our PDF file.
-fun generatePDF(context: Context) {
+fun generatePDF(context: Context, bitmap: Bitmap) {
 
     // declaring width and height
     // for our PDF file.
@@ -171,7 +172,7 @@ fun generatePDF(context: Context) {
 //    // second parameter is position from left
 //    // third parameter is position from top and last
 //    // one is our variable for paint.
-//    canvas.drawBitmap(scaledbmp, 56F, 40F, paint)
+    canvas.drawBitmap(bitmap, 56F, 40F, paint)
 
     // below line is used for adding typeface for
     // our text which we will be adding in our PDF file.
