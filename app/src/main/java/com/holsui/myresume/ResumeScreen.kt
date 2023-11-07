@@ -2,6 +2,9 @@ package com.holsui.myresume
 
 import android.graphics.Bitmap
 import android.graphics.Rect
+import android.nfc.Tag
+import android.util.Log
+import android.view.PixelCopy
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -35,6 +38,8 @@ import androidx.compose.ui.unit.IntSize
 
 private const val LETTER_RATIO = 8.5f / 11f
 
+const val TAG = "SSSSSS"
+
 interface ResumeClickListener {
     fun onGeneratePDFButtonClick() = Unit
 
@@ -47,6 +52,7 @@ interface ResumeClickListener {
 @OptIn(ExperimentalMaterial3Api::class)
 fun ResumeScreen(
     snapshotState: State<SnapshotState>,
+    onSnapshotTaken: (Rect,Bitmap) -> Unit,
     resumeClickListener: ResumeClickListener,
 ) {
     val context = LocalContext.current
@@ -56,6 +62,7 @@ fun ResumeScreen(
 
     Surface(
         modifier = Modifier
+            .background(Color.Cyan)
             .fillMaxSize()
             .aspectRatio(LETTER_RATIO)
             .onSizeChanged { size ->
@@ -66,17 +73,22 @@ fun ResumeScreen(
             },
     ) {
         if (snapshotState.value == SnapshotState.STATE_CAPTURE) {
+            Log.d(TAG, "ResumeScreen: CAPTURE!")
             captureRect?.let { rect ->
                 val bitmap = Bitmap.createBitmap(
                     rectSize.width,
                     rectSize.height,
                     Bitmap.Config.ARGB_8888
                 )
-                generatePDF(context = context, bitmap = bitmap)
+                Log.d(TAG, "rect size : $rectSize")
+                Log.d(TAG, "bitmap : $bitmap")
+//                generatePDF(context = context, bitmap = bitmap)
+                onSnapshotTaken(rect, bitmap)
             }
         }
 
         Scaffold(
+            modifier = Modifier.background(Color.Red),
             topBar = {
                 TopAppBar(
                     title = {
@@ -90,6 +102,7 @@ fun ResumeScreen(
             },
             floatingActionButton = {
                 Button(onClick = {
+                    Log.d(TAG, "ResumeScreen: button click")
                     resumeClickListener.onGeneratePDFButtonClick()
                 }) {
                     Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)

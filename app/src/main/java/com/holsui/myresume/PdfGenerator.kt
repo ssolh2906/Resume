@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -130,7 +131,7 @@ fun pdfGenerator() {
 // on below line we are creating a generate PDF
 // method which is use to generate our PDF file.
 fun generatePDF(context: Context, bitmap: Bitmap) {
-
+    Log.d(TAG, "generatePDF: ")
     // declaring width and height
     // for our PDF file.
     var pageHeight = 1120
@@ -172,34 +173,34 @@ fun generatePDF(context: Context, bitmap: Bitmap) {
 //    // second parameter is position from left
 //    // third parameter is position from top and last
 //    // one is our variable for paint.
-    canvas.drawBitmap(bitmap, 56F, 40F, paint)
-
-    // below line is used for adding typeface for
-    // our text which we will be adding in our PDF file.
-    title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL))
-
-    // below line is used for setting text size
-    // which we will be displaying in our PDF file.
-    title.textSize = 15F
-
-    // below line is sued for setting color
-    // of our text inside our PDF file.
-    title.setColor(ContextCompat.getColor(context, R.color.purple_200))
-
-    // below line is used to draw text in our PDF file.
-    // the first parameter is our text, second parameter
-    // is position from start, third parameter is position from top
-    // and then we are passing our variable of paint which is title.
-    canvas.drawText("A portal for IT professionals.", 209F, 100F, title)
-    canvas.drawText("Geeks for Geeks", 209F, 80F, title)
-    title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
-    title.setColor(ContextCompat.getColor(context, R.color.purple_200))
-    title.textSize = 15F
-
-    // below line is used for setting
-    // our text to center of PDF.
-    title.textAlign = Paint.Align.CENTER
-    canvas.drawText("This is sample document which we have created.", 396F, 560F, title)
+    canvas.drawBitmap(bitmap, 0F, 0F, paint)
+//
+//    // below line is used for adding typeface for
+//    // our text which we will be adding in our PDF file.
+//    title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL))
+//
+//    // below line is used for setting text size
+//    // which we will be displaying in our PDF file.
+//    title.textSize = 15F
+//
+//    // below line is sued for setting color
+//    // of our text inside our PDF file.
+//    title.setColor(ContextCompat.getColor(context, R.color.purple_200))
+//
+//    // below line is used to draw text in our PDF file.
+//    // the first parameter is our text, second parameter
+//    // is position from start, third parameter is position from top
+//    // and then we are passing our variable of paint which is title.
+//    canvas.drawText("A portal for IT professionals.", 209F, 100F, title)
+//    canvas.drawText("Geeks for Geeks", 209F, 80F, title)
+//    title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
+//    title.setColor(ContextCompat.getColor(context, R.color.purple_200))
+//    title.textSize = 15F
+//
+//    // below line is used for setting
+//    // our text to center of PDF.
+//    title.textAlign = Paint.Align.CENTER
+//    canvas.drawText("This is sample document which we have created.", 396F, 560F, title)
 
     // after adding all attributes to our
     // PDF file we will be finishing our page.
