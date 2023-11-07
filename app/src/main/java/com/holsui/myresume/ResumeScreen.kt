@@ -72,18 +72,16 @@ fun ResumeScreen(
     var rectSize by remember { mutableStateOf(IntSize(0, 0)) }
     var captureRect: Rect? by remember { mutableStateOf(null) }
 
-
-    val scope = rememberCoroutineScope()
-
-
     Surface(
         modifier = Modifier
             .fillMaxSize()
     ) {
         Column {
-            LinearProgressIndicator(
-                modifier = Modifier.fillMaxWidth(),
-            )
+            if (snapshotState.value == SnapshotState.STATE_READY) {
+                LinearProgressIndicator(
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
 
             Scaffold(
                 modifier = Modifier
@@ -146,6 +144,7 @@ fun ResumeScreen(
                 ) {
                     Column {
                         Text(text = "메메메메메메fdgd")
+                        Text(text =  if (snapshotState.value == SnapshotState.STATE_READY) "뤠디ㅣㅣㅣ" else "낫레디" )
                         Button(onClick = {}) {
                             Text(text = "메메메메메메")
                         }

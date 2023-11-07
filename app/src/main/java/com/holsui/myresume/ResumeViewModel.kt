@@ -12,8 +12,6 @@ class ResumeViewModel: ViewModel() {
         snapshotState.value = SnapshotState.STATE_READY
     }
     fun takeSnapshot() {
-        if (snapshotState.value == SnapshotState.STATE_READY) {
             snapshotState.value = SnapshotState.STATE_CAPTURE
-        }
     }
 }
