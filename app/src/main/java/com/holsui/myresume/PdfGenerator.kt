@@ -5,7 +5,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.Typeface
+import android.graphics.Rect
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
 import android.util.Log
@@ -29,7 +29,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat
 import java.io.File
 import java.io.FileOutputStream
 
@@ -130,12 +129,12 @@ fun pdfGenerator() {
 
 // on below line we are creating a generate PDF
 // method which is use to generate our PDF file.
-fun generatePDF(context: Context, bitmap: Bitmap) {
+fun generatePDF(context: Context, rect: Rect, bitmap: Bitmap) {
     Log.d(TAG, "generatePDF: ")
     // declaring width and height
     // for our PDF file.
-    var pageHeight = 1120
-    var pageWidth = 792
+    var pageHeight = rect.height()
+    var pageWidth =rect.width()
 
     // creating a bitmap variable
     // for storing our images

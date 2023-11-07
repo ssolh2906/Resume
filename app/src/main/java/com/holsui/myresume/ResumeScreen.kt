@@ -2,11 +2,10 @@ package com.holsui.myresume
 
 import android.graphics.Bitmap
 import android.graphics.Rect
-import android.nfc.Tag
 import android.util.Log
-import android.view.PixelCopy
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +31,6 @@ import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInWindow
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 
@@ -52,11 +50,9 @@ interface ResumeClickListener {
 @OptIn(ExperimentalMaterial3Api::class)
 fun ResumeScreen(
     snapshotState: State<SnapshotState>,
-    onSnapshotTaken: (Rect,Bitmap) -> Unit,
+    onBitmapSnapshotTaken: (Rect, Bitmap) -> Unit,
     resumeClickListener: ResumeClickListener,
 ) {
-    val context = LocalContext.current
-
     var rectSize by remember { mutableStateOf(IntSize(0, 0)) }
     var captureRect: Rect? by remember { mutableStateOf(null) }
 
@@ -73,22 +69,17 @@ fun ResumeScreen(
             },
     ) {
         if (snapshotState.value == SnapshotState.STATE_CAPTURE) {
-            Log.d(TAG, "ResumeScreen: CAPTURE!")
             captureRect?.let { rect ->
                 val bitmap = Bitmap.createBitmap(
                     rectSize.width,
                     rectSize.height,
                     Bitmap.Config.ARGB_8888
                 )
-                Log.d(TAG, "rect size : $rectSize")
-                Log.d(TAG, "bitmap : $bitmap")
-//                generatePDF(context = context, bitmap = bitmap)
-                onSnapshotTaken(rect, bitmap)
+                onBitmapSnapshotTaken(rect, bitmap)
             }
         }
 
         Scaffold(
-            modifier = Modifier.background(Color.Red),
             topBar = {
                 TopAppBar(
                     title = {
@@ -113,9 +104,15 @@ fun ResumeScreen(
             Box(
                 modifier = Modifier
                     .padding(it)
-                    .background(Color.Cyan)
             ) {
-                Text(text = "메메메메메메")
+                Column {
+                    Text(text = "메메메메메메")
+                    Text(text = "메메메메메메")
+                    Text(text = "메메메메메메fdgd")
+                    Button(onClick = {}) {
+                        Text(text = "메메메메메메")
+                    }
+                }
             }
         }
     }
