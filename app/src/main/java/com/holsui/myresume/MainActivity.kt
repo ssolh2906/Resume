@@ -33,6 +33,10 @@ class MainActivity : ComponentActivity() {
                         override fun onSnapshotReady() {
                             viewModel.takeSnapshot()
                         }
+
+                        override fun onAddTextInfo(tag: String, textInfo: TextInfo) {
+                            viewModel.addTextInfo(tag, textInfo)
+                        }
                     })
             }
         }

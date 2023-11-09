@@ -57,9 +57,12 @@ interface ResumeScreenListener {
     fun onGeneratePDFButtonClick() = Unit
     fun onSnapshotReady() = Unit
 
+    fun onAddTextInfo(tag: String, textInfo: TextInfo) = Unit
+
     companion object {
         val EMPTY = object : ResumeScreenListener {} // For Preview, Test
     }
+
 }
 
 private const val COMPOSE_TEXT_OFFSET_CONSTANT = 0.1f
