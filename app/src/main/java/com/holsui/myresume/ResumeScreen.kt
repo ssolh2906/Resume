@@ -25,7 +25,6 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -173,24 +172,11 @@ private fun Letter(
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxSize()
         ) {
-            var text1 by remember { mutableStateOf("가나다라 ABCD") }
-
-            BasicTextField(value = text1,
-                onValueChange = {
-                    text1 = it
-                },
-                modifier = Modifier
-                    .background(color = Color.Yellow)
-                    .onPlaced {
-                        Log.d("SSSSSS", "ResumeScreen: onPlaced")
-                        Log.d("SSSSSS", "${it.positionInRoot()}")
-                    },
-                textStyle = TextStyle(
-                    color = Color.Gray,
-                    fontSize = 50.sp,
-                    baselineShift = BaselineShift(COMPOSE_TEXT_OFFSET_CONSTANT),
-                    platformStyle = PlatformTextStyle(includeFontPadding = false),
-                ),
+            TextFiledPDF(
+                tag = "name",
+                defaultString = "SOLHEE TUCKER",
+                onTextBoxPlaced = { s: String, textInfo: TextInfo -> },
+                fontSize = 50
             )
 
             Text(text = if (snapshotState.value == SnapshotState.STATE_READY) "뤠디ㅣㅣㅣ" else "낫레디",
@@ -210,6 +196,42 @@ private fun Letter(
             )
         }
     }
+}
+
+@Composable
+private fun TextFiledPDF(
+    tag: String,
+    defaultString: String = "",
+    onTextBoxPlaced: (String, TextInfo) -> Unit = { _, _ -> },
+    fontSize: Int
+) {
+    var currValue by remember { mutableStateOf(defaultString) }
+
+    BasicTextField(
+        value = currValue,
+        onValueChange = {
+            currValue = it
+        },
+        modifier = Modifier
+            .background(color = Color.Yellow)
+            .onPlaced { coordinates ->
+                onTextBoxPlaced(
+                    tag,
+                    TextInfo(
+                        text = currValue,
+                        fontSize = fontSize,
+                        x = coordinates.positionInRoot().x,
+                        y = coordinates.positionInRoot().y
+                    )
+                )
+            },
+        textStyle = TextStyle(
+            color = Color.Gray,
+            fontSize = fontSize.sp,
+            baselineShift = BaselineShift(COMPOSE_TEXT_OFFSET_CONSTANT),
+            platformStyle = PlatformTextStyle(includeFontPadding = false),
+        ),
+    )
 }
 
 
