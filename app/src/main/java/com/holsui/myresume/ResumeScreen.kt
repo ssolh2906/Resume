@@ -67,8 +67,6 @@ interface ResumeScreenListener {
 
 }
 
-private const val COMPOSE_TEXT_OFFSET_CONSTANT = 0.1f
-
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun ResumeScreen(
@@ -172,7 +170,7 @@ private fun Letter(
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxSize()
         ) {
-            TextFiledPDF(
+            TextFieldPDF(
                 tag = "name",
                 defaultString = "SOLHEE TUCKER",
                 onTextBoxPlaced = { s: String, textInfo: TextInfo -> },
@@ -197,43 +195,6 @@ private fun Letter(
         }
     }
 }
-
-@Composable
-private fun TextFiledPDF(
-    tag: String,
-    defaultString: String = "",
-    onTextBoxPlaced: (String, TextInfo) -> Unit = { _, _ -> },
-    fontSize: Int
-) {
-    var currValue by remember { mutableStateOf(defaultString) }
-
-    BasicTextField(
-        value = currValue,
-        onValueChange = {
-            currValue = it
-        },
-        modifier = Modifier
-            .background(color = Color.Yellow)
-            .onPlaced { coordinates ->
-                onTextBoxPlaced(
-                    tag,
-                    TextInfo(
-                        text = currValue,
-                        fontSize = fontSize,
-                        x = coordinates.positionInRoot().x,
-                        y = coordinates.positionInRoot().y
-                    )
-                )
-            },
-        textStyle = TextStyle(
-            color = Color.Gray,
-            fontSize = fontSize.sp,
-            baselineShift = BaselineShift(COMPOSE_TEXT_OFFSET_CONSTANT),
-            platformStyle = PlatformTextStyle(includeFontPadding = false),
-        ),
-    )
-}
-
 
 private fun getAbsoluteRect(
     layoutCoordinate: LayoutCoordinates,
