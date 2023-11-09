@@ -8,6 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.collectAsState
+import com.holsui.myresume.pdfutil.generatePDF
 
 class MainActivity : ComponentActivity() {
 

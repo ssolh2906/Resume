@@ -1,4 +1,4 @@
-package com.holsui.myresume
+package com.holsui.myresume.pdfutil
 
 import android.app.Activity
 import android.content.Context
@@ -8,7 +8,6 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,6 +28,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.holsui.myresume.checkPermissions
+import com.holsui.myresume.requestPermission
 import java.io.File
 import java.io.FileOutputStream
 

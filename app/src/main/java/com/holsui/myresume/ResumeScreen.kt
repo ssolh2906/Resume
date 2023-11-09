@@ -167,7 +167,7 @@ fun ResumeScreen(
                                 .background(color = Color.Yellow)
                                 .onPlaced {
                                     Log.d("SSSSSS", "ResumeScreen: onPlaced")
-                                    Log.d("SSSSSS", "1: ${it.positionInRoot()}")
+                                    Log.d("SSSSSS", "${it.positionInRoot()}")
                                 }
                         )
                         Text(text = if (snapshotState.value == SnapshotState.STATE_READY) "뤠디ㅣㅣㅣ" else "낫레디",
