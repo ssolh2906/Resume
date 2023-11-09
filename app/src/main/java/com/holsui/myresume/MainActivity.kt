@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                         }, Handler(Looper.getMainLooper()))
 
                     },
-                    resumeClickListener = object : ResumeClickListener {
+                    resumeScreenListener = object : ResumeScreenListener {
                         override fun onGeneratePDFButtonClick() {
                             viewModel.snapshotReady()
                         }

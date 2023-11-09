@@ -4,22 +4,16 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.util.Log
-import android.widget.ProgressBar
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material3.Button
@@ -36,11 +30,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onPlaced
@@ -48,7 +40,6 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.BaselineShift
@@ -59,16 +50,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.holsui.myresume.ui.theme.toSp
 
 private const val LETTER_RATIO = 8.5f / 11f
 
-interface ResumeClickListener {
+interface ResumeScreenListener {
     fun onGeneratePDFButtonClick() = Unit
     fun onSnapshotReady() = Unit
 
     companion object {
-        val EMPTY = object : ResumeClickListener {} // For Preview, Test
+        val EMPTY = object : ResumeScreenListener {} // For Preview, Test
     }
 }
 
@@ -79,7 +69,7 @@ private const val COMPOSE_TEXT_OFFSET_CONSTANT = 0.1f
 fun ResumeScreen(
     snapshotState: State<SnapshotState>,
     onBitmapSnapshotTaken: (Rect, Bitmap) -> Unit,
-    resumeClickListener: ResumeClickListener,
+    resumeScreenListener: ResumeScreenListener,
 ) {
     var rectSize by remember { mutableStateOf(IntSize(0, 0)) }
     var captureRect: Rect? by remember { mutableStateOf(null) }
@@ -125,7 +115,7 @@ fun ResumeScreen(
                 },
                 floatingActionButton = {
                     Button(
-                        onClick = { resumeClickListener.onGeneratePDFButtonClick() },
+                        onClick = { resumeScreenListener.onGeneratePDFButtonClick() },
                     ) {
                         Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
                         Text(text = "PDF")
@@ -136,7 +126,7 @@ fun ResumeScreen(
                     Log.d("SSSSSS", "Side effect, ${snapshotState.value}")
                     when (snapshotState.value) {
                         SnapshotState.STATE_READY -> {
-                            resumeClickListener.onSnapshotReady()
+                            resumeScreenListener.onSnapshotReady()
                         }
 
                         SnapshotState.STATE_CAPTURE -> {
@@ -221,6 +211,6 @@ fun PreviewResume() {
     ResumeScreen(
         snapshotState = mutableStateOf(SnapshotState.STATE_IDLE),
         onBitmapSnapshotTaken = { _, _ -> },
-        resumeClickListener = ResumeClickListener.EMPTY
+        resumeScreenListener = ResumeScreenListener.EMPTY
     )
 }
