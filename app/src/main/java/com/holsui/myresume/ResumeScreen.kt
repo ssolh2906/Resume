@@ -8,12 +8,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material3.Button
@@ -23,6 +25,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -124,7 +127,7 @@ fun ResumeScreen(
                         Text(text = "PDF")
                     }
                 }
-            ) {
+            ) { paddingValues ->
                 SideEffect {
                     Log.d("SSSSSS", "Side effect, ${snapshotState.value}")
                     when (snapshotState.value) {
@@ -150,47 +153,61 @@ fun ResumeScreen(
                     }
                 }
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(it)
-                ) {
-                    Column(
-                        verticalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        Text(text = "가나다라 ABCD",
-                            style = TextStyle(
-                                baselineShift = BaselineShift(COMPOSE_TEXT_OFFSET_CONSTANT),
-                                platformStyle = PlatformTextStyle(includeFontPadding = false)
-                            ),
-                            fontSize = 50.sp,
-                            color = Color.Gray,
-                            modifier = Modifier
-                                .background(color = Color.Yellow)
-                                .onPlaced {
-                                    Log.d("SSSSSS", "ResumeScreen: onPlaced")
-                                    Log.d("SSSSSS", "${it.positionInRoot()}")
-                                }
-                        )
-                        Text(text = if (snapshotState.value == SnapshotState.STATE_READY) "뤠디ㅣㅣㅣ" else "낫레디",
-                            modifier = Modifier.onGloballyPositioned {
-                            })
-                        Button(onClick = {}) {
-                            Text(text = "메메메메메메")
-                        }
-                        AsyncImage(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data(
-                                    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
-                                )
-                                .crossfade(true)
-                                .build(),
-                            contentDescription = null,
-                        )
-                    }
-                }
+                Letter(paddingValues, snapshotState)
             }
+        }
+    }
+}
+
+@Composable
+private fun Letter(
+    paddingValues: PaddingValues,
+    snapshotState: State<SnapshotState>
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            var text1 by remember { mutableStateOf("가나다라 ABCD") }
+
+            BasicTextField(value = text1,
+                onValueChange = {
+                    text1 = it
+                },
+                modifier = Modifier
+                    .background(color = Color.Yellow)
+                    .onPlaced {
+                        Log.d("SSSSSS", "ResumeScreen: onPlaced")
+                        Log.d("SSSSSS", "${it.positionInRoot()}")
+                    },
+                textStyle = TextStyle(
+                    color = Color.Gray,
+                    fontSize = 50.sp,
+                    baselineShift = BaselineShift(COMPOSE_TEXT_OFFSET_CONSTANT),
+                    platformStyle = PlatformTextStyle(includeFontPadding = false),
+                ),
+            )
+
+            Text(text = if (snapshotState.value == SnapshotState.STATE_READY) "뤠디ㅣㅣㅣ" else "낫레디",
+                modifier = Modifier.onGloballyPositioned {
+                })
+            Button(onClick = {}) {
+                Text(text = "메메메메메메")
+            }
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(
+                        "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
+                    )
+                    .crossfade(true)
+                    .build(),
+                contentDescription = null,
+            )
         }
     }
 }
