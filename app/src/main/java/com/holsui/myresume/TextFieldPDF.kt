@@ -24,13 +24,13 @@ fun TextFieldPDF(
     tag: String,
     defaultString: String = "",
     onTextPlaced: (String, TextInfo) -> Unit = { _, _ -> },
-    fontSize: Int
+    fontSize: Int,
+    modifier: Modifier = Modifier
 ) {
     var currValue by remember { mutableStateOf(defaultString) }
 
     BasicTextField(
-        modifier = Modifier
-            .background(color = Color.Yellow)
+        modifier = modifier
             .onPlaced { coordinates ->
                 onTextPlaced(
                     tag, TextInfo(
@@ -43,7 +43,7 @@ fun TextFieldPDF(
                 Log.d("TF_PDF", "TextFieldPDF [P]: ${coordinates.positionInWindow()} ")
 
             }
-            .onGloballyPositioned {coordinates ->
+            .onGloballyPositioned { coordinates ->
                 Log.d("TF_PDF", "TextFieldPDF [G]: ${coordinates.positionInWindow()} ")
             },
         value = currValue,

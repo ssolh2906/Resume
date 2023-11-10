@@ -3,7 +3,9 @@ package com.holsui.myresume
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Rect
+import android.graphics.fonts.FontStyle
 import android.util.Log
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,17 +34,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.holsui.myresume.ui.theme.SpacingInset
 
 private const val LETTER_RATIO = 8.5f / 11f
 
@@ -65,30 +72,18 @@ fun ResumeScreen(
     onBitmapSnapshotTaken: (Rect, Bitmap) -> Unit,
     resumeScreenListener: ResumeScreenListener,
 ) {
+    val onTextPlaced = { tag: String, textInfo: TextInfo ->
+        resumeScreenListener.onAddTextInfo(tag, textInfo)
+    }
+
     var rectSize by remember { mutableStateOf(IntSize(0, 0)) }
     var captureRect: Rect? by remember { mutableStateOf(null) }
 
     Surface(
-        modifier = Modifier
-            .fillMaxSize()
-            .onGloballyPositioned {
-                Log.d("PDF", "Letter position: ${it.positionInWindow()}")
-            }
+        modifier = Modifier.fillMaxSize()
     ) {
         Column {
-            Box(
-                modifier = Modifier
-                    .height(36.dp)
-                    .fillMaxWidth()
-            ) {
-                if (snapshotState.value == SnapshotState.STATE_READY) {
-                    LinearProgressIndicator(
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                } else {
-                    Text(text = "Editing...", modifier = Modifier.fillMaxSize())
-                }
-            }
+            StatusBox(snapshotState)
 
             Scaffold(
                 modifier = Modifier
@@ -102,10 +97,12 @@ fun ResumeScreen(
                 topBar = {
                     TopAppBar(
                         title = {
-                            Text(
-                                text = "name",
-                                modifier = Modifier.wrapContentSize(),
-                                textAlign = TextAlign.Center,
+                            val tag = "name"
+                            TextFieldPDF(
+                                tag = tag,
+                                defaultString = "SOLHEE PARK TUCKER",
+                                onTextPlaced = onTextPlaced,
+                                fontSize = 20
                             )
                         }
                     )
@@ -144,16 +141,42 @@ fun ResumeScreen(
                     }
                 }
 
-                Letter(paddingValues, snapshotState, { tag, textInfo ->
-                    resumeScreenListener.onAddTextInfo(tag, textInfo)
-                })
+                LetterContents(
+                    paddingValues = paddingValues,
+                    snapshotState = snapshotState,
+                    onTextPlaced = onTextPlaced
+                )
             }
         }
     }
 }
 
 @Composable
-private fun Letter(
+private fun StatusBox(snapshotState: State<SnapshotState>) {
+    Box(
+        modifier = Modifier
+            .height(36.dp)
+            .fillMaxWidth()
+            .border(width = 1.dp, color = Color.Gray)
+    ) {
+        if (snapshotState.value == SnapshotState.STATE_READY) {
+            LinearProgressIndicator(
+                modifier = Modifier.fillMaxWidth(),
+            )
+        } else {
+            Text(
+                text = "Editing...",
+                modifier = Modifier.fillMaxSize(),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+}
+
+@Composable
+private fun LetterContents(
     paddingValues: PaddingValues,
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit,
@@ -162,6 +185,7 @@ private fun Letter(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
+            .padding(SpacingInset)
     ) {
         Column(
             verticalArrangement = Arrangement.SpaceBetween,
@@ -177,9 +201,7 @@ private fun Letter(
             Text(text = if (snapshotState.value == SnapshotState.STATE_READY) "뤠디ㅣㅣㅣ" else "낫레디",
                 modifier = Modifier.onGloballyPositioned {
                 })
-            Button(onClick = {}) {
-                Text(text = "메메메메메메")
-            }
+
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(
@@ -206,7 +228,7 @@ private fun getAbsoluteRect(
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-@Preview
+@Preview(widthDp = 800, heightDp = 1280)
 fun PreviewResume() {
     ResumeScreen(
         snapshotState = mutableStateOf(SnapshotState.STATE_IDLE),
