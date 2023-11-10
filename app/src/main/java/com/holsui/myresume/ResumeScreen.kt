@@ -81,7 +81,26 @@ fun ResumeScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         Column {
-            StatusBox(snapshotState)
+            Box(
+                modifier = Modifier
+                    .height(36.dp)
+                    .fillMaxWidth()
+                    .border(width = 1.dp, color = Color.Gray)
+            ) {
+                if (snapshotState.value == SnapshotState.STATE_READY) {
+                    LinearProgressIndicator(
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                } else {
+                    Text(
+                        text = "Editing...",
+                        modifier = Modifier.fillMaxSize(),
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
 
             Scaffold(
                 modifier = Modifier
@@ -149,30 +168,6 @@ fun ResumeScreen(
                     onTextPlaced = onTextPlaced
                 )
             }
-        }
-    }
-}
-
-@Composable
-private fun StatusBox(snapshotState: State<SnapshotState>) {
-    Box(
-        modifier = Modifier
-            .height(36.dp)
-            .fillMaxWidth()
-            .border(width = 1.dp, color = Color.Gray)
-    ) {
-        if (snapshotState.value == SnapshotState.STATE_READY) {
-            LinearProgressIndicator(
-                modifier = Modifier.fillMaxWidth(),
-            )
-        } else {
-            Text(
-                text = "Editing...",
-                modifier = Modifier.fillMaxSize(),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
         }
     }
 }
