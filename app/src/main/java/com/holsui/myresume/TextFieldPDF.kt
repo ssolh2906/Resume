@@ -1,6 +1,8 @@
 package com.holsui.myresume
 
 import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.runtime.Composable
@@ -30,23 +32,23 @@ fun TextFieldPDF(
     var currValue by remember { mutableStateOf(defaultString) }
 
     BasicTextField(
+        value = currValue,
+        onValueChange = {
+            currValue = it
+        },
         modifier = modifier
+            .wrapContentSize()
             .onPlaced { coordinates ->
                 onTextPlaced(
                     tag, TextInfo(
                         text = currValue,
                         fontSize = fontSize,
-                        x = coordinates.positionInRoot().x,
+                        x = coordinates.positionInRoot().x + coordinates.size.width / 2f,
                         y = coordinates.positionInRoot().y
                     )
                 )
                 Log.d("TF_PDF", "TextFieldPDF [P]: ${coordinates.positionInWindow()} ")
-            }
-            .wrapContentSize(),
-        value = currValue,
-        onValueChange = {
-            currValue = it
-        },
+            },
         textStyle = textStyle.copy(
             color = Color.Gray,
             fontSize = fontSize.sp,
