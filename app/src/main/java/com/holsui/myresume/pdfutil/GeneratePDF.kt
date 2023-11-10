@@ -10,38 +10,50 @@ import android.os.Environment
 import android.util.Log
 import android.util.TypedValue
 import android.widget.Toast
+import com.holsui.myresume.TextInfo
 import java.io.File
 import java.io.FileOutputStream
 
 
 // on below line we are creating a generate PDF
 // method which is use to generate our PDF file.
-fun generatePDF(context: Context, pageSize: Rect, bitmap: Bitmap) {
+fun generatePDF(
+    context: Context,
+    pageSize: Rect,
+    bitmap: Bitmap,
+    textInfoMap: Map<String, TextInfo>,
+    letterOffset: Rect? = null // TODO: replace to real value
+) {
 
-    var pageHeight = pageSize.height()
-    var pageWidth = pageSize.width()
+    val pageHeight = pageSize.height()
+    val pageWidth = pageSize.width()
 
-    var pdfDocument = PdfDocument()
+    val pdfDocument = PdfDocument()
 
     var paint: Paint = Paint()
-    var title: Paint = Paint()
-    title.textSize = spToPx(context, 50f)
 
-    val fontMetrics = title.fontMetrics
-    val baseline = 128f - fontMetrics.top
-
-    var myPageInfo: PdfDocument.PageInfo? =
+    val myPageInfo: PdfDocument.PageInfo? =
         PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
 
-    var myPage: PdfDocument.Page = pdfDocument.startPage(myPageInfo)
+    val myPage: PdfDocument.Page = pdfDocument.startPage(myPageInfo)
 
-    var canvas: Canvas = myPage.canvas
+    val canvas: Canvas = myPage.canvas
+
 
     canvas.drawBitmap(bitmap, 0F, 0F, paint)
-    Log.d("SSSSSS", "generatePDF: ${title.fontMetrics.top}, ${title.fontMetrics.ascent}")
 
-    canvas.drawText("SOLHEE TUCKER RRRRRR6", 0f, 200f - (title.fontMetrics.top-title.fontMetrics.ascent) ,title)
+    for (textInfo in textInfoMap.values) {
+        val title = Paint()
+        title.textSize = spToPx(context, textInfo.fontSize.toFloat())
 
+        canvas.drawText(
+            textInfo.text,
+            textInfo.x,
+            textInfo.y,
+            title
+        )
+
+    }
     pdfDocument.finishPage(myPage)
 
     val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
