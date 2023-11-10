@@ -14,6 +14,7 @@ class ResumeViewModel : ViewModel() {
 
     fun addTextInfo(tag: String, textInfo: TextInfo) {
         textInfoTable[tag] = textInfo
+        Log.d("TF_PDF", "addTextInfo: $textInfo")
     }
 
     fun snapshotReady() {

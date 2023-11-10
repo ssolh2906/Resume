@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import android.util.Log
 import android.util.TypedValue
 import android.widget.Toast
 import java.io.File
@@ -37,9 +38,9 @@ fun generatePDF(context: Context, pageSize: Rect, bitmap: Bitmap) {
     var canvas: Canvas = myPage.canvas
 
     canvas.drawBitmap(bitmap, 0F, 0F, paint)
+    Log.d("SSSSSS", "generatePDF: ${title.fontMetrics.top}, ${title.fontMetrics.ascent}")
 
-    canvas.drawText("가나다라 ABCD", 0f, 128f - fontMetrics.top ,title)
-    canvas.drawText("687", 400f, 687f + 87f, title)
+    canvas.drawText("SOLHEE TUCKER RRRRRR6", 0f, 200f - (title.fontMetrics.top-title.fontMetrics.ascent) ,title)
 
     pdfDocument.finishPage(myPage)
 
