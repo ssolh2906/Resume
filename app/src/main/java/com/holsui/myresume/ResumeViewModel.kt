@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 class ResumeViewModel : ViewModel() {
 
-    companion object {
-        val textInfoTable = mutableMapOf<String, TextInfo>()
-    }
+
+    val textInfoTable = mutableMapOf<String, TextInfo>()
+
 
     var snapshotState = MutableStateFlow(SnapshotState.STATE_IDLE)
 

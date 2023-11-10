@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     snapshotState = viewModel.snapshotState.collectAsState(),
                     onBitmapSnapshotTaken = { rect, bitmap ->
                         PixelCopy.request(window, rect, bitmap, {
-                            generatePDF(this, rect, bitmap)
+                            generatePDF(this, rect, bitmap, viewModel.textInfoTable)
                         }, Handler(Looper.getMainLooper()))
 
                     },
