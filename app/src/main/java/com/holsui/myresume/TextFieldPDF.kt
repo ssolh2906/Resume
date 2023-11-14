@@ -1,5 +1,7 @@
 package com.holsui.myresume
 
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.runtime.Composable
@@ -34,7 +36,7 @@ fun TextFieldPDF(
             currValue = it
         },
         modifier = modifier
-            .wrapContentSize()
+            .width(IntrinsicSize.Min)
             .onPlaced { coordinates ->
                 onTextPlaced(
                     tag, TextInfo(
@@ -46,7 +48,7 @@ fun TextFieldPDF(
                 )
             },
         textStyle = textStyle.copy(
-            color = when(snapshotState.value) {
+            color = when (snapshotState.value) {
                 SnapshotState.STATE_READY -> Color.Transparent
                 else -> Color.Black
             },

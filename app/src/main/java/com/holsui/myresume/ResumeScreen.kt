@@ -4,22 +4,28 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -37,8 +43,10 @@ import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInWindow
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
@@ -108,20 +116,44 @@ fun ResumeScreen(
                         captureRect = getAbsoluteRect(layoutCoordinate = it, rectSize = rectSize)
                     },
                 topBar = {
-                    TopAppBar(
+                    MediumTopAppBar(
                         title = {
-                            val tag = "name"
+                            val tag = "HEADING"
                             TextFieldPDF(
                                 tag = tag,
+                                fontSize = 28,
                                 modifier = Modifier
                                     .fillMaxWidth(),
-                                defaultString = "HEADING",
+                                defaultString = "SOLHEE TUCKER",
                                 onTextPlaced = onTextPlaced,
                                 snapshotState = snapshotState,
-                                fontSize = 30
+                                textStyle = TextStyle.Default.copy(fontWeight = FontWeight.Bold)
                             )
 
-                        }
+                        },
+                        navigationIcon = {
+                            Row {
+                                Icon(Icons.Default.ExitToApp, contentDescription = null)
+                            }
+                        },
+                        actions = {
+                            TextFieldPDF(
+                                tag = "action",
+                                defaultString = "HIRE",
+                                fontSize = 22,
+                                modifier = Modifier
+                                    .wrapContentSize()
+                                    .padding(4.dp),
+                                snapshotState = snapshotState,
+                                textStyle = TextStyle.Default.copy(
+                                    fontWeight = FontWeight.Bold,
+                                    textDecoration = TextDecoration.Underline
+                                )
+                            )
+                        },
+                        modifier = Modifier
+                            .height(64.dp)
+                            .padding(horizontal = 8.dp)
                     )
                 },
                 floatingActionButton = {
@@ -183,23 +215,6 @@ private fun LetterContents(
         Column(
             modifier = Modifier.fillMaxSize(),
         ) {
-            Column(
-                modifier = Modifier
-                    .wrapContentHeight()
-                    .padding(vertical = 12.dp)
-                    .fillMaxWidth(),
-            ) {
-                for (i in 10..50 step 2) {
-                    TextFieldPDF(
-                        tag = i.toString(),
-                        fontSize = i,
-                        modifier = Modifier.wrapContentHeight(),
-                        defaultString = "ABCDEFDHIJKLMNO $i, ",
-                        onTextPlaced = onTextPlaced,
-                        snapshotState = snapshotState
-                    )
-                }
-            }
         }
     }
 }
