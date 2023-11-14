@@ -49,7 +49,7 @@ fun TextFieldPDF(
             },
         textStyle = textStyle.copy(
             color = when (snapshotState.value) {
-                SnapshotState.STATE_READY -> Color.Transparent
+                SnapshotState.STATE_READY -> Color.Red
                 else -> Color.Black
             },
             fontSize = fontSize.sp,
