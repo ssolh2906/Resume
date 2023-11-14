@@ -50,7 +50,7 @@ fun generatePDF(
         canvas.drawText(
             textInfo.text,
             textInfo.x,
-            textInfo.y,
+            textInfo.y + (2.12f * textInfo.fontSize - 72.4f),
             title
         )
 
