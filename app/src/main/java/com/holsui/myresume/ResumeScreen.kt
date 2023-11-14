@@ -11,23 +11,30 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -56,6 +63,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.holsui.myresume.ui.composables.SideBar
 import com.holsui.myresume.ui.theme.SpacingInset
 
 private const val LETTER_RATIO = 8.5f / 11f
@@ -209,17 +217,13 @@ private fun LetterContents(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
-            .padding(SpacingInset)
     ) {
-        Column(
+        Row(
             modifier = Modifier.fillMaxSize(),
         ) {
-            TextFieldPDF(
-                tag = "body",
-                fontSize = 22,
-                defaultString = "Hire me",
-                onTextPlaced = onTextPlaced,
-                snapshotState = snapshotState
+            SideBar(
+                snapshotState,
+                onTextPlaced
             )
         }
     }
