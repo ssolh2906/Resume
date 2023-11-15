@@ -26,6 +26,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
@@ -138,19 +139,17 @@ fun ResumeScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
 
-                        TextFieldPDF(
-                            tag = "TopAppBarLeading",
-                            fontSize = 22,
-                            defaultString = "Hire",
-                            onTextPlaced = onTextPlaced,
-                            snapshotState = snapshotState
+                        Icon(
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = "Top bar icon, menu"
                         )
                         TextFieldPDF(
                             tag = "TopAppBar Center",
-                            fontSize = 28,
+                            fontSize = 22,
                             defaultString = "SOLHEE TUCKER",
                             onTextPlaced = onTextPlaced,
-                            snapshotState = snapshotState
+                            snapshotState = snapshotState,
+                            isBold = true
                         )
                         Row {
                             Icon(

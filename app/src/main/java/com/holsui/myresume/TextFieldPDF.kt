@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
@@ -26,6 +27,7 @@ fun TextFieldPDF(
     defaultString: String = "",
     onTextPlaced: (String, TextInfo) -> Unit = { _, _ -> },
     snapshotState: State<SnapshotState>,
+    isBold: Boolean = false,
     textStyle: TextStyle = TextStyle.Default
 ) {
     var currValue by remember { mutableStateOf(defaultString) }
@@ -43,7 +45,8 @@ fun TextFieldPDF(
                         text = currValue,
                         fontSize = fontSize,
                         x = coordinates.positionInRoot().x + coordinates.size.width / 2f,
-                        y = coordinates.positionInRoot().y
+                        y = coordinates.positionInRoot().y,
+                        isBold = isBold
                     )
                 )
             },
@@ -53,7 +56,8 @@ fun TextFieldPDF(
                 else -> Color.Black
             },
             fontSize = fontSize.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            fontWeight = if (isBold) FontWeight.Bold else FontWeight.Normal
         ),
     )
 }
