@@ -37,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -224,16 +225,30 @@ private fun LetterContents(
                 FeaturedCard(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(300.dp)
+                        .weight(0.25f),
+                    snapshotState = snapshotState,
+                    onTextPlaced = onTextPlaced,
                 )
                 ExperienceCard(
-
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(0.25f),
+                    snapshotState = snapshotState,
+                    onTextPlaced = onTextPlaced,
                 )
                 EducationCard(
-
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(0.25f),
+                    snapshotState = snapshotState,
+                    onTextPlaced = onTextPlaced,
                 )
                 ProjectCard(
-
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(0.25f),
+                    snapshotState = snapshotState,
+                    onTextPlaced = onTextPlaced,
                 )
             }
         }
