@@ -100,7 +100,7 @@ fun CheckBoxItem(
 ) {
     Surface(
         shape = RoundedCornerShape(30.dp),
-        color = Color(0xFFFEF7FF),
+        color = Color(0xFFF7F2FA),
         modifier = Modifier
             .padding(end = 4.dp, bottom = 2.dp)
             .height(32.dp)
