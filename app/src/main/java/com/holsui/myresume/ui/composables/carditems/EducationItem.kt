@@ -6,11 +6,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.holsui.myresume.SnapshotState
 import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.TextInfo
+import com.holsui.myresume.ui.composables.SpeechBubble
 
 @Composable
 fun EducationItem(
@@ -78,7 +80,7 @@ fun BSBox(
         TextFieldPDF(
             tag = "BSHeader",
             defaultString = "Bachelors",
-            fontSize = 16,
+            fontSize = 18,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced
         )
@@ -92,18 +94,27 @@ fun CoursesBox(
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit
 ) {
-    Column(modifier = modifier) {
-        TextFieldPDF(
-            tag = "CoursesHeader",
-            defaultString = "Courses",
-            fontSize = 16,
-            snapshotState = snapshotState,
-            onTextPlaced = onTextPlaced
+    Surface(
+        modifier = Modifier
+            .padding(24.dp)
+            .wrapContentSize(),
+        color = Color.Transparent,
+    ) {
+        SpeechBubble(
+            content = {
+                Column(modifier = modifier.wrapContentHeight()) {
+                    TextFieldPDF(
+                        tag = "CoursesHeader",
+                        defaultString = "Courses",
+                        fontSize = 16,
+                        snapshotState = snapshotState,
+                        onTextPlaced = onTextPlaced
+                    )
+                }
+            },
         )
     }
-
 }
-
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -113,4 +124,10 @@ fun PreviewEduItem() {
         associationName = "Supergene",
         snapshotState = mutableStateOf(SnapshotState.STATE_IDLE),
         onTextPlaced = { _: String, _: TextInfo -> })
+}
+
+@Composable
+@Preview
+fun PreviewTextRect() {
+    SpeechBubble({ Text(text = "Hi") })
 }
