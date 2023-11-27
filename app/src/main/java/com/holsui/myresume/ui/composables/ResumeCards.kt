@@ -124,16 +124,16 @@ fun EducationCard(
                     .padding(8.dp)
                     .padding(start = 8.dp)
             )
-            Row(Modifier.fillMaxWidth()) {
+            Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp)) {
                 BSBox(
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
-                    modifier = Modifier.fillMaxWidth(0.5f)
+                    modifier = Modifier.fillMaxWidth(0.6f).padding(start = 8.dp, top = 12.dp)
                 )
                 CoursesBox(
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
-                    modifier = Modifier.fillMaxWidth(0.5f)
+                    modifier = Modifier.fillMaxWidth().padding(end = 8.dp)
                 )
             }
         }

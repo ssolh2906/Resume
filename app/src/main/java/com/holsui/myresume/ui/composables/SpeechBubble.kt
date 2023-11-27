@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -32,16 +33,17 @@ fun SpeechBubble(
     content: @Composable () -> Unit,
     color: Color = Color.White,
     cornerSize: Dp = 8.dp,
+    modifier: Modifier,
 ) {
     val triangleSize = 13
     val visibleTriangleDp = 13.dp
     val triangleSizePx = dpToPx(LocalContext.current, triangleSize + 3f)
 
-    Surface(color = Color.Transparent) {
+    Surface(color = Color.Transparent, modifier = modifier) {
         Row(
             Modifier
                 .height(IntrinsicSize.Max)
-                .wrapContentWidth()
+                .fillMaxWidth()
                 .background(Color.Transparent)
         ) {
             Surface(
@@ -65,7 +67,7 @@ fun SpeechBubble(
                         )
                     )
                     .padding(8.dp)
-                    .wrapContentWidth()
+                    .fillMaxWidth(),
             ) {
                 content()
             }
@@ -91,5 +93,5 @@ class TriangleEdgeShape(private val offset: Int) : Shape {
 @Composable
 @Preview
 fun PreviewTextRect() {
-    SpeechBubble({ Text(text = "Hi") })
+    SpeechBubble({ Text(text = "Hi") }, modifier = Modifier)
 }
