@@ -115,7 +115,7 @@ fun CheckBoxItem(
             )
             TextFieldPDF(
                 defaultString = text,
-                tag = "checkbox item" + text,
+                tag = "checkbox item$text",
                 fontSize = 14,
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,

@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -124,10 +123,4 @@ fun PreviewEduItem() {
         associationName = "Supergene",
         snapshotState = mutableStateOf(SnapshotState.STATE_IDLE),
         onTextPlaced = { _: String, _: TextInfo -> })
-}
-
-@Composable
-@Preview
-fun PreviewTextRect() {
-    SpeechBubble({ Text(text = "Hi") })
 }

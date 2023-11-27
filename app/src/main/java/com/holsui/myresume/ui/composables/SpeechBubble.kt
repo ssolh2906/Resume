@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -78,3 +79,8 @@ class TriangleEdgeShape(private val offset: Int) : Shape {
     }
 }
 
+@Composable
+@Preview
+fun PreviewTextRect() {
+    SpeechBubble({ Text(text = "Hi") })
+}
