@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,16 +19,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.holsui.myresume.dpToPx
 
 @Composable
 fun SpeechBubble(
     content: @Composable () -> Unit,
-    color: Color = Color.White
+    color: Color = Color.White,
+    cornerSize: Dp = 8.dp,
 ) {
+    val triangleSize = 13
+    val visibleTriangleDp = 13.dp
+    val triangleSizePx = dpToPx(LocalContext.current, triangleSize + 3f)
+
     Surface(color = Color.Transparent) {
         Row(
             Modifier
@@ -37,9 +46,9 @@ fun SpeechBubble(
         ) {
             Surface(
                 modifier = Modifier
-                    .width(13.dp)
+                    .width(visibleTriangleDp)
                     .fillMaxHeight(),
-                shape = TriangleEdgeShape(100),
+                shape = TriangleEdgeShape(triangleSizePx.toInt()),
                 color = color,
                 border = null,
                 content = {}
@@ -50,15 +59,15 @@ fun SpeechBubble(
                         color = color,
                         shape = RoundedCornerShape(
                             topStart = 0.dp,
-                            topEnd = 4.dp,
-                            bottomEnd = 4.dp,
-                            bottomStart = 4.dp
+                            topEnd = cornerSize,
+                            bottomEnd = cornerSize,
+                            bottomStart = cornerSize
                         )
                     )
-                    .width(100.dp)
+                    .padding(8.dp)
+                    .wrapContentWidth()
             ) {
-                Text("Chat")
-                content.invoke()
+                content()
             }
         }
     }

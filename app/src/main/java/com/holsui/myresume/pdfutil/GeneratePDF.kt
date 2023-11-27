@@ -11,6 +11,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.widget.Toast
 import com.holsui.myresume.TextInfo
+import com.holsui.myresume.spToPx
 import java.io.File
 import java.io.FileOutputStream
 
@@ -71,12 +72,4 @@ fun generatePDF(
     }
 
     pdfDocument.close()
-}
-
-fun spToPx(context: Context, sp: Float): Float {
-    return TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_SP,
-        sp,
-        context.resources.displayMetrics
-    )
 }
