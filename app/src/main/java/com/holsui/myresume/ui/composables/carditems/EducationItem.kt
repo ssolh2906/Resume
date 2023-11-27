@@ -23,8 +23,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.holsui.myresume.R
 import com.holsui.myresume.SnapshotState
 import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.TextInfo
@@ -59,11 +61,6 @@ fun EducationItem(
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced
                 )
-//                Surface(
-//                    modifier = Modifier.width(1.dp),
-//                    shape = RectangleShape,
-//                    color = Color.LightGray
-//                ) {}
                 CoursesBox(
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
@@ -82,13 +79,7 @@ fun BSBox(
     onTextPlaced: (String, TextInfo) -> Unit
 ) {
     Column(modifier = modifier) {
-        TextFieldPDF(
-            tag = "BSHeader CS",
-            defaultString = "Bachelor's Degree in",
-            fontSize = 16,
-            snapshotState = snapshotState,
-            onTextPlaced = onTextPlaced
-        )
+        BSHeader("CS", snapshotState, onTextPlaced)
         TextFieldPDF(
             tag = "BSTitle CS",
             defaultString = "Computer Science & Engineering",
@@ -98,13 +89,7 @@ fun BSBox(
             isBold = true
         )
         Spacer(modifier = Modifier.height(20.dp))
-        TextFieldPDF(
-            tag = "BSHeader BT",
-            defaultString = "Bachelor's Degree in",
-            fontSize = 16,
-            snapshotState = snapshotState,
-            onTextPlaced = onTextPlaced
-        )
+        BSHeader("Bio", snapshotState, onTextPlaced)
         TextFieldPDF(
             tag = "BSTitle BT",
             defaultString = "Horticultural Biotechnology",
@@ -115,6 +100,24 @@ fun BSBox(
         )
     }
 
+}
+
+@Composable
+private fun BSHeader(
+    tag: String,
+    snapshotState: State<SnapshotState>,
+    onTextPlaced: (String, TextInfo) -> Unit
+) {
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Icon(painterResource(id = R.drawable.ico_degree), "icon degree", Modifier.size(20.dp))
+        TextFieldPDF(
+            tag = "BSHeader $tag",
+            defaultString = "Bachelor's Degree in",
+            fontSize = 16,
+            snapshotState = snapshotState,
+            onTextPlaced = onTextPlaced
+        )
+    }
 }
 
 @Composable
@@ -169,7 +172,7 @@ fun CoursesBox(
                 }
             },
             modifier = Modifier.fillMaxWidth(),
-            color = Color.White
+            color = Color(0xFFF9F9F9)
         )
     }
 }
