@@ -85,7 +85,12 @@ fun ExperienceCard(
             ExperienceItem(
                 associationName = "Supergene.CO",
                 checkBoxItems = listOf("Kotlin", "AndroidSDK", "JetpackCompose", "MultiThreading"),
-                dotItems = listOf(),
+                dotItems = listOf(
+                    "Migrate view to Jetpack Compose",
+                    "Unit test / Instrumented test / Compose integrated test",
+                    "Introduced Hilt (Dependency Injection) to New Project",
+                    "Introduced Multi-module to New Project"
+                ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
                 description = "AUG 22 - OCT 23, Android Developer",
@@ -93,6 +98,9 @@ fun ExperienceCard(
             ExperienceItem(
                 associationName = "Gazzi Labs (AI labs)",
                 checkBoxItems = listOf("Python", "Batch Programming"),
+                dotItems = listOf(
+                    "Automated Daily Summary using Python, Saving 1hr+/day for all other interns",
+                ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
                 description = "OCT 21 - JAN 22, Student Internship"
@@ -127,7 +135,7 @@ fun EducationCard(
             )
             EducationItem(
                 associationName = "Kyung Hee University, South Korea",
-                description = "FEB 16 - FEB 23",
+                description = "Graduated FEB 23",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
