@@ -37,7 +37,8 @@ fun SpeechBubble(
 ) {
     val triangleSize = 13
     val visibleTriangleDp = 13.dp
-    val triangleSizePx = dpToPx(LocalContext.current, triangleSize + 3f)
+    val context = LocalContext.current
+    val triangleSizePx = dpToPx(context, triangleSize + 3f)
 
     Surface(color = Color.Transparent, modifier = modifier) {
         Row(
@@ -50,7 +51,7 @@ fun SpeechBubble(
                 modifier = Modifier
                     .width(visibleTriangleDp)
                     .fillMaxHeight(),
-                shape = TriangleEdgeShape(triangleSizePx.toInt()),
+                shape = TriangleEdgeShape(triangleSizePx.toInt(), dpToPx(context,70f).toInt()),
                 color = color,
                 border = null,
                 content = {}
@@ -59,12 +60,7 @@ fun SpeechBubble(
                 modifier = Modifier
                     .background(
                         color = color,
-                        shape = RoundedCornerShape(
-                            topStart = 0.dp,
-                            topEnd = cornerSize,
-                            bottomEnd = cornerSize,
-                            bottomStart = cornerSize
-                        )
+                        shape = RoundedCornerShape(cornerSize)
                     )
                     .padding(8.dp)
                     .fillMaxWidth(),
@@ -75,16 +71,16 @@ fun SpeechBubble(
     }
 }
 
-class TriangleEdgeShape(private val offset: Int) : Shape {
+class TriangleEdgeShape(private val offset: Int, val yOffset: Int = 0) : Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
         val trianglePath = Path().apply {
-            moveTo(x = 0f, y = 0f)
-            lineTo(x = 0f + offset, y = 0f)
-            lineTo(x = 0f + offset, y = 0f + offset)
+            moveTo(x = 0f, y = 0f + yOffset)
+            lineTo(x = 0f + offset, y = 0f + yOffset)
+            lineTo(x = 0f + offset, y = 0f + offset + yOffset)
         }
         return Outline.Generic(path = trianglePath)
     }

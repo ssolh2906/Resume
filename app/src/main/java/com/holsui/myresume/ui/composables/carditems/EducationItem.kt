@@ -1,6 +1,7 @@
 package com.holsui.myresume.ui.composables.carditems
 
 import android.annotation.SuppressLint
+import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,25 +50,51 @@ fun EducationItem(
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(4.dp)
-        ) {
-            Row {
-                BSBox(
-                    modifier = Modifier.fillMaxWidth(0.5f),
-                    snapshotState = snapshotState,
-                    onTextPlaced = onTextPlaced
-                )
-                CoursesBox(
+        Row {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(0.6f)
+                    .wrapContentHeight()
+                    .padding(4.dp)
+            ) {
+                TextFieldPDF(
+                    tag = associationName + "Title",
+                    fontSize = 16,
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
-                    modifier = Modifier.fillMaxWidth()
+                    defaultString = associationName,
+                    modifier = Modifier
+                        .align(Alignment.Start)
+                        .wrapContentSize()
+                        .padding(4.dp),
+                    isBold = true
                 )
-
+                description?.let {
+                    TextFieldPDF(
+                        tag = associationName + "Description",
+                        defaultString = it,
+                        fontSize = 12,
+                        snapshotState = snapshotState,
+                        onTextPlaced = onTextPlaced,
+                        modifier = Modifier.padding(start = 4.dp, bottom = 4.dp)
+                    )
+                }
+                BSBox(
+                    snapshotState = snapshotState,
+                    onTextPlaced = onTextPlaced,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 8.dp, top = 8.dp, bottom = 8.dp)
+                )
             }
+            CoursesBox(
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 8.dp)
+            )
+
         }
     }
 }
@@ -88,7 +115,7 @@ fun BSBox(
             onTextPlaced = onTextPlaced,
             isBold = true
         )
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         BSHeader("Bio", snapshotState, onTextPlaced)
         TextFieldPDF(
             tag = "BSTitle BT",
@@ -128,7 +155,8 @@ fun CoursesBox(
 ) {
     Surface(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(top = 24.dp),
         color = Color.Transparent,
     ) {
         SpeechBubble(
@@ -161,6 +189,7 @@ fun CoursesBox(
                             onTextPlaced = onTextPlaced
                         )
                     }
+                    Spacer(modifier = Modifier.height(4.dp))
                     TextFieldPDF(
                         tag = "courses rear",
                         defaultString = "AND MORE...",
@@ -172,7 +201,7 @@ fun CoursesBox(
                 }
             },
             modifier = Modifier.fillMaxWidth(),
-            color = Color(0xFFF9F9F9)
+            color = Color(0xFFF8F8F8)
         )
     }
 }

@@ -240,7 +240,7 @@ private fun LetterContents(
                 EducationCard(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(0.25f),
+                        .wrapContentHeight(),
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
                 )

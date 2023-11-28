@@ -1,5 +1,6 @@
 package com.holsui.myresume.ui.composables
 
+import androidx.compose.animation.core.snap
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -124,18 +125,12 @@ fun EducationCard(
                     .padding(8.dp)
                     .padding(start = 8.dp)
             )
-            Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp)) {
-                BSBox(
-                    snapshotState = snapshotState,
-                    onTextPlaced = onTextPlaced,
-                    modifier = Modifier.fillMaxWidth(0.6f).padding(start = 8.dp, top = 12.dp)
-                )
-                CoursesBox(
-                    snapshotState = snapshotState,
-                    onTextPlaced = onTextPlaced,
-                    modifier = Modifier.fillMaxWidth().padding(end = 8.dp)
-                )
-            }
+            EducationItem(
+                associationName = "Kyung Hee University",
+                description = "FEB 16 - FEB 23",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
         }
     }
 }
