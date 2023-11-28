@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -49,17 +50,53 @@ fun SideBar(
     ) {
         Column {
             SideBarHeader("Contact", snapshotState, onTextPlaced)
-            SideBarItem("408-000-0001", snapshotState, onTextPlaced) {
+            SideBarItem("solheetucker@gmail.com", snapshotState, onTextPlaced) {
+                Icon(
+                    Icons.Default.MailOutline,
+                    modifier = Modifier.size(24.dp),
+                    contentDescription = "Icon Call"
+                )
+            }
+            SideBarItem("669)-271-2586", snapshotState, onTextPlaced) {
                 Icon(
                     Icons.Default.Call,
                     modifier = Modifier.size(24.dp),
                     contentDescription = "Icon Call"
                 )
             }
-            SideBarItem("408-000-0000", snapshotState, onTextPlaced)
-            Divider(modifier = Modifier.padding(horizontal = 16.dp), thickness = 1.dp)
+            SideBarDivider()
+
+            SideBarHeader("Address", snapshotState, onTextPlaced)
+            SideBarItem("(95032) Los Gatos, CA, USA", snapshotState, onTextPlaced)
+
+            SideBarDivider()
+
+            SideBarHeader("Links", snapshotState, onTextPlaced)
+            SideBarItem("github.com/ssolh2906", snapshotState, onTextPlaced) {
+                Icon(
+                    Icons.Default.Call,
+                    modifier = Modifier.size(24.dp),
+                    contentDescription = "Icon Call"
+                )
+            }
+            SideBarItem(
+                "www.linkedin.com/in/SolPT/",
+                snapshotState,
+                onTextPlaced
+            ) {
+                Icon(
+                    Icons.Default.Call,
+                    modifier = Modifier.size(24.dp),
+                    contentDescription = "Icon Call"
+                )
+            }
         }
     }
+}
+
+@Composable
+private fun SideBarDivider() {
+    Divider(modifier = Modifier.padding(horizontal = 16.dp), thickness = 1.dp)
 }
 
 @Composable
@@ -71,14 +108,15 @@ fun SideBarHeader(
     Box(
         modifier = Modifier
             .wrapContentHeight()
-            .padding(vertical = 18.dp, horizontal = 16.dp)
+            .padding(vertical = 12.dp, horizontal = 16.dp)
     ) {
         TextFieldPDF(
             tag = string,
-            fontSize = 14,
+            fontSize = 16,
             snapshotState = snapshotState,
             defaultString = string,
             onTextPlaced = onTextPlaced,
+            isBold = true
         )
     }
 }
@@ -92,7 +130,7 @@ fun SideBarItem(
 ) {
     Row(
         modifier = Modifier
-            .padding(vertical = 18.dp, horizontal = 16.dp),
+            .padding(vertical = 12.dp, horizontal = 16.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {

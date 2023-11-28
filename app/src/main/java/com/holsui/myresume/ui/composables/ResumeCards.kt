@@ -95,7 +95,7 @@ fun ExperienceCard(
                 checkBoxItems = listOf("Python", "Batch Programming"),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
-                description = "OCT 22 - JAN 23, Student Internship"
+                description = "OCT 21 - JAN 22, Student Internship"
             )
         }
     }
@@ -126,7 +126,7 @@ fun EducationCard(
                     .padding(start = 8.dp)
             )
             EducationItem(
-                associationName = "Kyung Hee University",
+                associationName = "Kyung Hee University, South Korea",
                 description = "FEB 16 - FEB 23",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
