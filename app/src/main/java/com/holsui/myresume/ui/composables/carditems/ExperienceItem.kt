@@ -56,7 +56,7 @@ fun ExperienceItem(
             Column {
                 TextFieldPDF(
                     tag = associationName + "Title",
-                    fontSize = 16,
+                    fontSize = 15,
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
                     defaultString = associationName,

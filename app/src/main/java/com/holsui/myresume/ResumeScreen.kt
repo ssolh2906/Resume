@@ -154,11 +154,13 @@ fun ResumeScreen(
                     }
                 },
                 floatingActionButton = {
-                    Button(
-                        onClick = { resumeScreenListener.onGeneratePDFButtonClick() },
-                    ) {
-                        Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
-                        Text(text = "PDF")
+                    if (snapshotState.value == SnapshotState.STATE_IDLE) {
+                        Button(
+                            onClick = { resumeScreenListener.onGeneratePDFButtonClick() },
+                        ) {
+                            Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
+                            Text(text = "PDF")
+                        }
                     }
                 }
             ) { paddingValues ->
@@ -215,13 +217,12 @@ private fun LetterContents(
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
                 modifier = Modifier
-                    .weight(0.3f)
+                    .weight(0.32f)
                     .padding(vertical = 12.dp)
             )
             Column(
                 modifier = Modifier
-                    .weight(0.7f)
-                    .padding(12.dp)
+                    .weight(0.68f)
             ) {
                 FeaturedCard(
                     modifier = Modifier

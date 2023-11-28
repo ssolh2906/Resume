@@ -59,7 +59,7 @@ fun EducationItem(
             ) {
                 TextFieldPDF(
                     tag = associationName + "Title",
-                    fontSize = 16,
+                    fontSize = 15,
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
                     defaultString = associationName,
@@ -110,7 +110,7 @@ fun BSBox(
         TextFieldPDF(
             tag = "BSTitle CS",
             defaultString = "Computer Science & Engineering",
-            fontSize = 21,
+            fontSize = 16,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced,
             isBold = true
@@ -120,7 +120,7 @@ fun BSBox(
         TextFieldPDF(
             tag = "BSTitle BT",
             defaultString = "Horticultural Biotechnology",
-            fontSize = 21,
+            fontSize = 16,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced,
             isBold = true
@@ -220,7 +220,7 @@ fun Course(
         TextFieldPDF(
             tag = "CoursesContent$course",
             defaultString = course,
-            fontSize = 14,
+            fontSize = 11,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced,
             modifier = Modifier.wrapContentSize()

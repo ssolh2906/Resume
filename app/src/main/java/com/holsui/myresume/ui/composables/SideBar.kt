@@ -24,8 +24,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.holsui.myresume.R
 import com.holsui.myresume.SnapshotState
 import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.TextInfo
@@ -53,7 +55,9 @@ fun SideBar(
             SideBarItem("solheetucker@gmail.com", snapshotState, onTextPlaced) {
                 Icon(
                     Icons.Default.MailOutline,
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(2.dp),
                     contentDescription = "Icon Call"
                 )
             }
@@ -74,8 +78,10 @@ fun SideBar(
             SideBarHeader("Links", snapshotState, onTextPlaced)
             SideBarItem("github.com/ssolh2906", snapshotState, onTextPlaced) {
                 Icon(
-                    Icons.Default.Call,
-                    modifier = Modifier.size(24.dp),
+                    painterResource(id = R.drawable.ico_github),
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(2.dp),
                     contentDescription = "Icon Call"
                 )
             }
@@ -85,11 +91,26 @@ fun SideBar(
                 onTextPlaced
             ) {
                 Icon(
-                    Icons.Default.Call,
-                    modifier = Modifier.size(24.dp),
+                    painterResource(id = R.drawable.ico_linkedin),
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(2.dp),
                     contentDescription = "Icon Call"
                 )
             }
+            SideBarItem(
+                "holsui.tistory.com",
+                snapshotState,
+                onTextPlaced
+            ) {
+                Icon(
+                    painterResource(id = R.drawable.ico_blog),
+                    modifier = Modifier
+                        .size(24.dp),
+                    contentDescription = "Icon Call"
+                )
+            }
+
         }
     }
 }
@@ -130,7 +151,7 @@ fun SideBarItem(
 ) {
     Row(
         modifier = Modifier
-            .padding(vertical = 12.dp, horizontal = 16.dp),
+            .padding(top = 12.dp, bottom = 12.dp, start = 6.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -138,7 +159,7 @@ fun SideBarItem(
         Spacer(modifier = Modifier.width(12.dp))
         TextFieldPDF(
             tag = string,
-            fontSize = 14,
+            fontSize = 13,
             snapshotState = snapshotState,
             defaultString = string,
             onTextPlaced = onTextPlaced,
