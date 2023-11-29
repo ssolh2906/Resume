@@ -12,12 +12,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
-import com.holsui.myresume.data.ExpSpecification
 import com.holsui.myresume.data.ExpSpecification.*
 import com.holsui.myresume.data.TextInfo
-import com.holsui.myresume.ui.composables.carditems.DotHeader
 import com.holsui.myresume.ui.composables.carditems.EducationItem
 import com.holsui.myresume.ui.composables.carditems.ExperienceItem
+
+private const val CARD_ELEVATION = 3
 
 @Composable
 fun ProjectCard(
@@ -43,7 +43,7 @@ fun FeaturedCard(
         modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         color = Color(0xFFFEF7FF),
-        shadowElevation = 1.dp
+        shadowElevation = CARD_ELEVATION.dp
     ) {
         TextFieldPDF(
             tag = "FeaturedCardTitle",
@@ -66,7 +66,7 @@ fun ExperienceCard(
         modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         color = Color(0xFFFEF7FF),
-        shadowElevation = 1.dp
+        shadowElevation = CARD_ELEVATION.dp
     ) {
         Column {
             TextFieldPDF(
@@ -126,7 +126,7 @@ fun EducationCard(
         modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         color = Color(0xFFFEF7FF),
-        shadowElevation = 1.dp
+        shadowElevation = CARD_ELEVATION.dp
     ) {
         Column(Modifier.fillMaxWidth()) {
             TextFieldPDF(
