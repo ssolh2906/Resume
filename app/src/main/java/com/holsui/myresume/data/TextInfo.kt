@@ -1,4 +1,4 @@
-package com.holsui.myresume
+package com.holsui.myresume.data
 
 data class TextInfo(
     val text: String,

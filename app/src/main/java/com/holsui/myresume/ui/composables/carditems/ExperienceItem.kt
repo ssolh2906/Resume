@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -28,13 +27,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.graphics.Color.Companion.Red
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.holsui.myresume.SnapshotState
+import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
-import com.holsui.myresume.TextInfo
+import com.holsui.myresume.data.TextInfo
 
 
 @OptIn(ExperimentalLayoutApi::class)

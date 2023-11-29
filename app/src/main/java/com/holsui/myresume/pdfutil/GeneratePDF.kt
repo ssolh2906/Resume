@@ -7,11 +7,9 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
-import android.util.Log
-import android.util.TypedValue
 import android.widget.Toast
-import com.holsui.myresume.TextInfo
-import com.holsui.myresume.spToPx
+import com.holsui.myresume.data.TextInfo
+import com.holsui.myresume.miscellaneous.spToPx
 import java.io.File
 import java.io.FileOutputStream
 

@@ -28,9 +28,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.R
-import com.holsui.myresume.SnapshotState
+import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
-import com.holsui.myresume.TextInfo
+import com.holsui.myresume.data.TextInfo
 
 
 @Composable

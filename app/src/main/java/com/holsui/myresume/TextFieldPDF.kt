@@ -2,7 +2,6 @@ package com.holsui.myresume
 
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -18,6 +17,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import com.holsui.myresume.data.SnapshotState
+import com.holsui.myresume.data.TextInfo
 
 @Composable
 fun TextFieldPDF(

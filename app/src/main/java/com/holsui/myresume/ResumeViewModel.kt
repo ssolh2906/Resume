@@ -2,6 +2,8 @@ package com.holsui.myresume
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.holsui.myresume.data.SnapshotState
+import com.holsui.myresume.data.TextInfo
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class ResumeViewModel : ViewModel() {

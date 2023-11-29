@@ -1,4 +1,4 @@
-package com.holsui.myresume
+package com.holsui.myresume.ui.composables
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

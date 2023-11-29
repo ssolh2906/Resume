@@ -28,8 +28,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.holsui.myresume.checkPermissions
-import com.holsui.myresume.requestPermission
+import com.holsui.myresume.miscellaneous.checkPermissions
+import com.holsui.myresume.miscellaneous.requestPermission
 import java.io.File
 import java.io.FileOutputStream
 
