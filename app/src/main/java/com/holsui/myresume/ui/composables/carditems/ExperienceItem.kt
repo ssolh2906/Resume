@@ -1,6 +1,8 @@
 package com.holsui.myresume.ui.composables.carditems
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +31,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.data.SnapshotState
@@ -199,9 +202,12 @@ fun CheckBoxItem(
                 .padding(8.dp)
                 .wrapContentSize()
         ) {
+            val context = LocalContext.current
             Checkbox(
                 checked = true,
-                onCheckedChange = {},
+                onCheckedChange = {
+                    Toast.makeText(context, "Trust Me, I know $text", Toast.LENGTH_SHORT).show()
+                },
                 modifier = Modifier
                     .scale(checkBoxScale)
                     .size(currCheckBoxSize.dp)
