@@ -18,6 +18,7 @@ import com.holsui.myresume.ui.composables.carditems.EducationItem
 import com.holsui.myresume.ui.composables.carditems.ExperienceItem
 
 private const val CARD_ELEVATION = 3
+private const val CARD_TITLE_SIZE = 18
 
 @Composable
 fun ProjectCard(
@@ -47,7 +48,7 @@ fun FeaturedCard(
     ) {
         TextFieldPDF(
             tag = "FeaturedCardTitle",
-            fontSize = 22,
+            fontSize = CARD_TITLE_SIZE,
             defaultString = "FEATURED",
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced,
@@ -71,13 +72,13 @@ fun ExperienceCard(
         Column {
             TextFieldPDF(
                 tag = "Exp Card Header",
-                fontSize = 22,
+                fontSize = CARD_TITLE_SIZE,
                 snapshotState = snapshotState,
                 defaultString = "Experience",
                 onTextPlaced = onTextPlaced,
                 isBold = true,
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(4.dp)
                     .padding(start = 8.dp)
             )
             ExperienceItem(
@@ -131,13 +132,13 @@ fun EducationCard(
         Column(Modifier.fillMaxWidth()) {
             TextFieldPDF(
                 tag = "Edu Card Header",
-                fontSize = 22,
+                fontSize = CARD_TITLE_SIZE,
                 snapshotState = snapshotState,
                 defaultString = "Education",
                 onTextPlaced = onTextPlaced,
                 isBold = true,
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(4.dp)
                     .padding(start = 8.dp)
             )
             EducationItem(

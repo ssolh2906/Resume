@@ -225,8 +225,8 @@ private fun LetterContents(
             Column(
                 modifier = Modifier
                     .weight(0.68f)
-                    .padding(horizontal = 6.dp, vertical = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
+                    .padding(horizontal = 8.dp, vertical = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 FeaturedCard(
                     modifier = Modifier

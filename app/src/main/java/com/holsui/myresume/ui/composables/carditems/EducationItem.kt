@@ -108,7 +108,7 @@ fun BSBox(
         TextFieldPDF(
             tag = "BSTitle CS",
             defaultString = "Computer Science & Engineering",
-            fontSize = 16,
+            fontSize = 14,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced,
             isBold = true
@@ -118,7 +118,7 @@ fun BSBox(
         TextFieldPDF(
             tag = "BSTitle BT",
             defaultString = "Horticultural Biotechnology",
-            fontSize = 16,
+            fontSize = 14,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced,
             isBold = true
@@ -138,7 +138,7 @@ private fun BSHeader(
         TextFieldPDF(
             tag = "BSHeader $tag",
             defaultString = "Bachelor's Degree in",
-            fontSize = 16,
+            fontSize = 14,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced
         )

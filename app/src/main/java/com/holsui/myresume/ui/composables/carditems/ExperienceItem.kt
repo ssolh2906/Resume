@@ -193,13 +193,13 @@ fun CheckBoxItem(
         shape = RoundedCornerShape(30.dp),
         color = Color(0xFFF7F2FA),
         modifier = Modifier
-            .height((currCheckBoxSize + 20).dp)
+            .height((currCheckBoxSize + 12).dp)
             .padding(end = 4.dp, bottom = 2.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(8.dp)
+                .padding(horizontal = 6.dp)
                 .wrapContentSize()
         ) {
             val context = LocalContext.current
