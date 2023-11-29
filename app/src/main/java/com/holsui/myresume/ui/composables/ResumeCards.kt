@@ -40,7 +40,7 @@ fun FeaturedCard(
     onTextPlaced: (String, TextInfo) -> Unit,
 ) {
     Surface(
-        modifier = modifier.padding(12.dp),
+        modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         color = Color(0xFFFEF7FF),
         shadowElevation = 1.dp
@@ -63,7 +63,7 @@ fun ExperienceCard(
     onTextPlaced: (String, TextInfo) -> Unit,
 ) {
     Surface(
-        modifier = modifier.padding(12.dp),
+        modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         color = Color(0xFFFEF7FF),
         shadowElevation = 1.dp
@@ -106,7 +106,7 @@ fun ExperienceCard(
                 associationName = "Gazzi Labs (AI labs)",
                 checkBoxItems = listOf("Python", "Batch Programming"),
                 dotItems = listOf(
-                    "Automated Daily Summary using Python, Saving 1hr+/day for all other interns",
+                    DotDescription("Automated Daily Summary using Python, Saving 1hr+/day for all other interns"),
                 ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
@@ -123,7 +123,7 @@ fun EducationCard(
     onTextPlaced: (String, TextInfo) -> Unit,
 ) {
     Surface(
-        modifier = modifier.padding(12.dp),
+        modifier = modifier,
         shape = RoundedCornerShape(12.dp),
         color = Color(0xFFFEF7FF),
         shadowElevation = 1.dp

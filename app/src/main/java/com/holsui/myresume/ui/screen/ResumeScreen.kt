@@ -225,6 +225,8 @@ private fun LetterContents(
             Column(
                 modifier = Modifier
                     .weight(0.68f)
+                    .padding(horizontal = 6.dp, vertical = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 FeaturedCard(
                     modifier = Modifier
@@ -244,13 +246,6 @@ private fun LetterContents(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    snapshotState = snapshotState,
-                    onTextPlaced = onTextPlaced,
-                )
-                ProjectCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.25f),
                     snapshotState = snapshotState,
                     onTextPlaced = onTextPlaced,
                 )
