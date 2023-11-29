@@ -25,6 +25,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Transparent
@@ -165,7 +166,7 @@ fun DotHeader(
     ) {
         TextFieldPDF(
             tag = "dot item $header",
-            fontSize = 10,
+            fontSize = 12,
             snapshotState = snapshotState,
             modifier = Modifier.wrapContentSize(),
             defaultString = header,
@@ -181,29 +182,40 @@ fun CheckBoxItem(
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit
 ) {
+    val checkBoxOriginalSize = 20
+    val checkBoxScale = 0.7f
+    val currCheckBoxSize = checkBoxOriginalSize * checkBoxScale
+
     Surface(
         shape = RoundedCornerShape(30.dp),
         color = Color(0xFFF7F2FA),
         modifier = Modifier
+            .height((currCheckBoxSize + 20).dp)
             .padding(end = 4.dp, bottom = 2.dp)
-            .height(32.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.wrapContentSize()
+            modifier = Modifier
+                .padding(8.dp)
+                .wrapContentSize()
         ) {
             Checkbox(
                 checked = true,
                 onCheckedChange = {},
+                modifier = Modifier
+                    .scale(checkBoxScale)
+                    .size(currCheckBoxSize.dp)
+                    .padding(start = 6.dp) // Hard coded check box size = 20
             )
+            Spacer(modifier = Modifier.width(6.dp))
             TextFieldPDF(
                 defaultString = text,
                 tag = "checkbox item$text",
-                fontSize = 14,
+                fontSize = 11,
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
                 modifier = Modifier
-                    .padding(end = 12.dp)
+                    .padding(end = 6.dp)
                     .wrapContentSize()
             )
         }
