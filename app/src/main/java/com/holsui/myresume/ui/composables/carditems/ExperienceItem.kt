@@ -27,11 +27,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.data.ExpSpecification
+import com.holsui.myresume.data.ExpSpecification.DotDescription
+import com.holsui.myresume.data.ExpSpecification.ExpSpecHeader
 import com.holsui.myresume.data.TextInfo
 
 
@@ -40,7 +43,7 @@ import com.holsui.myresume.data.TextInfo
 fun ExperienceItem(
     associationName: String,
     description: String? = null,
-    dotItems: List<String>? = null,
+    dotItems: List<ExpSpecification>? = null,
     checkBoxItems: List<String>? = null,
     modifier: Modifier = Modifier,
     snapshotState: State<SnapshotState>,
@@ -84,9 +87,15 @@ fun ExperienceItem(
                         modifier = Modifier.padding(start = 4.dp, bottom = 4.dp)
                     )
                 }
-                if (dotItems != null) {
-                    for (item in dotItems) {
-                        DotItem(
+                dotItems?.forEach { item ->
+                    when (item) {
+                        is ExpSpecHeader -> DotHeader(
+                            item = item,
+                            snapshotState = snapshotState,
+                            onTextPlaced = onTextPlaced
+                        )
+
+                        is DotDescription -> DotDescription(
                             item = item,
                             snapshotState = snapshotState,
                             onTextPlaced = onTextPlaced
@@ -111,42 +120,13 @@ fun ExperienceItem(
 }
 
 @Composable
-fun DotItem(
-    item: String,
-    snapshotState: State<SnapshotState>,
-    onTextPlaced: (String, TextInfo) -> Unit
-) {
-    Row(
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(horizontal = 4.dp)
-    ) {
-        Surface(
-            shape = CircleShape,
-            color = Gray,
-            modifier = Modifier
-                .size(4.dp)
-                .offset(y = 1.dp)
-        ) {}
-        Spacer(modifier = Modifier.width(8.dp))
-        TextFieldPDF(
-            tag = "dot item $item",
-            fontSize = 10,
-            snapshotState = snapshotState,
-            modifier = Modifier.wrapContentSize(),
-            defaultString = item,
-            onTextPlaced = onTextPlaced
-        )
-    }
-}
-
-@Composable
 fun DotDescription(
-    item: ExpSpecification,
+    item: DotDescription,
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit
 ) {
     val description = item.content
+    val dotVisible = item.dot
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
@@ -154,7 +134,7 @@ fun DotDescription(
     ) {
         Surface(
             shape = CircleShape,
-            color = Gray,
+            color = if (dotVisible) Gray else Transparent,
             modifier = Modifier
                 .size(4.dp)
                 .offset(y = 1.dp)
@@ -162,7 +142,7 @@ fun DotDescription(
         Spacer(modifier = Modifier.width(8.dp))
         TextFieldPDF(
             tag = "dot item $description",
-            fontSize = 10,
+            fontSize = 11,
             snapshotState = snapshotState,
             modifier = Modifier.wrapContentSize(),
             defaultString = description,

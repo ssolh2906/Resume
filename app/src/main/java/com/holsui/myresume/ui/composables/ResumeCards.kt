@@ -12,7 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
+import com.holsui.myresume.data.ExpSpecification
+import com.holsui.myresume.data.ExpSpecification.*
 import com.holsui.myresume.data.TextInfo
+import com.holsui.myresume.ui.composables.carditems.DotHeader
 import com.holsui.myresume.ui.composables.carditems.EducationItem
 import com.holsui.myresume.ui.composables.carditems.ExperienceItem
 
@@ -81,10 +84,19 @@ fun ExperienceCard(
                 associationName = "Supergene.CO",
                 checkBoxItems = listOf("Kotlin", "AndroidSDK", "JetpackCompose", "MultiThreading"),
                 dotItems = listOf(
-                    "Migrate view to Jetpack Compose",
-                    "Unit test / Instrumented test / Compose integrated test",
-                    "Introduced Hilt (Dependency Injection) to New Project",
-                    "Introduced Multi-module to New Project"
+                    ExpSpecHeader("Dev Performance"),
+                    DotDescription("Accelerated UI development with Jetpack Compose"),
+                    DotDescription("Reduced build time by 30+% using multi-modularization"),
+                    ExpSpecHeader("Testable / Maintainable App"),
+                    DotDescription("Ensured app maintainability with Clean Architecture principles "),
+                    DotDescription("Increased app flexibility with Dependency injection & Dependency inversion "),
+                    DotDescription("Implemented Unit & Instrumented tests "),
+                    DotDescription("using APIs as AndroidX Test, Espresso & Compose Test", false),
+                    ExpSpecHeader("Team Collaboration"),
+                    DotDescription("Established a reputation as a most communicative team member,"),
+                    DotDescription("consistently initiating and participating in productive discussions.", false),
+                    DotDescription("Applied mathematical background to optimize features, solve complex problems "),
+                    DotDescription("Bridged the gap between development and design."),
                 ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
