@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
+import com.holsui.myresume.data.ExpSpecification
 import com.holsui.myresume.data.TextInfo
 
 
@@ -135,6 +136,61 @@ fun DotItem(
             modifier = Modifier.wrapContentSize(),
             defaultString = item,
             onTextPlaced = onTextPlaced
+        )
+    }
+}
+
+@Composable
+fun DotDescription(
+    item: ExpSpecification,
+    snapshotState: State<SnapshotState>,
+    onTextPlaced: (String, TextInfo) -> Unit
+) {
+    val description = item.content
+    Row(
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(horizontal = 4.dp)
+    ) {
+        Surface(
+            shape = CircleShape,
+            color = Gray,
+            modifier = Modifier
+                .size(4.dp)
+                .offset(y = 1.dp)
+        ) {}
+        Spacer(modifier = Modifier.width(8.dp))
+        TextFieldPDF(
+            tag = "dot item $description",
+            fontSize = 10,
+            snapshotState = snapshotState,
+            modifier = Modifier.wrapContentSize(),
+            defaultString = description,
+            onTextPlaced = onTextPlaced
+        )
+    }
+}
+
+@Composable
+fun DotHeader(
+    item: ExpSpecification,
+    snapshotState: State<SnapshotState>,
+    onTextPlaced: (String, TextInfo) -> Unit
+) {
+    val header = item.content
+    Row(
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(horizontal = 4.dp)
+    ) {
+        TextFieldPDF(
+            tag = "dot item $header",
+            fontSize = 10,
+            snapshotState = snapshotState,
+            modifier = Modifier.wrapContentSize(),
+            defaultString = header,
+            onTextPlaced = onTextPlaced,
+            isBold = true
         )
     }
 }
