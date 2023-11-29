@@ -108,10 +108,11 @@ fun ExperienceCard(
                 checkBoxItems = listOf("Python", "Batch Programming"),
                 dotItems = listOf(
                     DotDescription("Automated Daily Summary using Python, Saving 1hr+/day for all other interns"),
+                    DotDescription("Transformed onboarding for non-tech interns, cutting orientation time from 8 to 2 hours"),
                 ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
-                description = "OCT 21 - JAN 22, Student Internship"
+                description = "OCT 21 - JAN 22, Data labeling, Student Internship"
             )
         }
     }
