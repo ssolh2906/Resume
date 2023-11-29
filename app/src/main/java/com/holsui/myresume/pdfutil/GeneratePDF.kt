@@ -45,6 +45,8 @@ fun generatePDF(
         val title = Paint()
         title.textAlign = Paint.Align.CENTER
         title.textSize = spToPx(context, textInfo.fontSize.toFloat())
+        title.isFakeBoldText = textInfo.isBold
+
 
         canvas.drawText(
             textInfo.text,
