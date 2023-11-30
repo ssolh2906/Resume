@@ -32,6 +32,7 @@ import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.data.TextInfo
 
+const val SIDE_ITEMS_PADDING = 8
 
 @Composable
 fun SideBar(
@@ -111,6 +112,7 @@ fun SideBar(
                 )
             }
 
+            SideBarDivider()
         }
     }
 }
@@ -129,7 +131,7 @@ fun SideBarHeader(
     Box(
         modifier = Modifier
             .wrapContentHeight()
-            .padding(vertical = 12.dp, horizontal = 16.dp)
+            .padding(vertical = SIDE_ITEMS_PADDING.dp, horizontal = 16.dp)
     ) {
         TextFieldPDF(
             tag = string,
@@ -151,7 +153,7 @@ fun SideBarItem(
 ) {
     Row(
         modifier = Modifier
-            .padding(top = 12.dp, bottom = 12.dp, start = 6.dp),
+            .padding(top = SIDE_ITEMS_PADDING.dp, bottom = SIDE_ITEMS_PADDING.dp, start = 6.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -173,6 +175,5 @@ fun SideBarItem(
 fun PreviewSidebar() {
     SideBar(snapshotState = mutableStateOf(SnapshotState.STATE_IDLE),
         onTextPlaced = { _, _ ->
-
         })
 }
