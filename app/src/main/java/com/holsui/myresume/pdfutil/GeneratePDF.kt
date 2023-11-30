@@ -13,23 +13,18 @@ import com.holsui.myresume.miscellaneous.spToPx
 import java.io.File
 import java.io.FileOutputStream
 
-
-// on below line we are creating a generate PDF
-// method which is use to generate our PDF file.
 fun generatePDF(
     context: Context,
     pageSize: Rect,
     bitmap: Bitmap,
     textInfoMap: Map<String, TextInfo>,
-    letterOffset: Rect? = null // TODO: replace to real value
 ) {
-
     val pageHeight = pageSize.height()
     val pageWidth = pageSize.width()
 
     val pdfDocument = PdfDocument()
 
-    var paint: Paint = Paint()
+    val paint: Paint = Paint()
 
     val myPageInfo: PdfDocument.PageInfo? =
         PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
@@ -37,7 +32,6 @@ fun generatePDF(
     val myPage: PdfDocument.Page = pdfDocument.startPage(myPageInfo)
 
     val canvas: Canvas = myPage.canvas
-
 
     canvas.drawBitmap(bitmap, 0F, 0F, paint)
 
@@ -47,14 +41,12 @@ fun generatePDF(
         title.textSize = spToPx(context, textInfo.fontSize.toFloat())
         title.isFakeBoldText = textInfo.isBold
 
-
         canvas.drawText(
             textInfo.text,
             textInfo.x,
             textInfo.y + (2.12f * textInfo.fontSize - 72.4f),
             title
         )
-
     }
     pdfDocument.finishPage(myPage)
 

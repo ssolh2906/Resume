@@ -21,20 +21,6 @@ private const val CARD_ELEVATION = 3
 private const val CARD_TITLE_SIZE = 18
 
 @Composable
-fun ProjectCard(
-    modifier: Modifier = Modifier,
-    snapshotState: State<SnapshotState>,
-    onTextPlaced: (String, TextInfo) -> Unit,
-) {
-    Surface(
-        modifier = modifier,
-        shape = RoundedCornerShape(12.dp),
-    ) {
-
-    }
-}
-
-@Composable
 fun FeaturedCard(
     modifier: Modifier = Modifier,
     snapshotState: State<SnapshotState>,

@@ -36,12 +36,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.layout.positionInWindow
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -57,7 +58,6 @@ import com.holsui.myresume.miscellaneous.getAbsoluteRect
 import com.holsui.myresume.ui.composables.EducationCard
 import com.holsui.myresume.ui.composables.ExperienceCard
 import com.holsui.myresume.ui.composables.FeaturedCard
-import com.holsui.myresume.ui.composables.ProjectCard
 import com.holsui.myresume.ui.composables.SideBar
 
 private const val LETTER_RATIO = 8.5f / 11f
@@ -74,7 +74,7 @@ interface ResumeScreenListener {
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 fun ResumeScreen(
     snapshotState: State<SnapshotState>,
     onBitmapSnapshotTaken: (Rect, Bitmap) -> Unit,
@@ -86,6 +86,9 @@ fun ResumeScreen(
 
     var rectSize by remember { mutableStateOf(IntSize(0, 0)) }
     var captureRect: Rect? by remember { mutableStateOf(null) }
+
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val view = LocalView.current
 
     Surface(
         modifier = Modifier.fillMaxSize()
@@ -158,7 +161,11 @@ fun ResumeScreen(
                 floatingActionButton = {
                     if (snapshotState.value == SnapshotState.STATE_IDLE) {
                         Button(
-                            onClick = { resumeScreenListener.onGeneratePDFButtonClick() },
+                            onClick = {
+                                keyboardController?.hide()
+                                view.clearFocus()
+                                resumeScreenListener.onGeneratePDFButtonClick()
+                            },
                         ) {
                             Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
                             Text(text = "PDF")
@@ -207,49 +214,46 @@ private fun LetterContents(
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit,
 ) {
-    Box(
+
+    Row(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
     ) {
-        Row(
-            modifier = Modifier.fillMaxSize(),
+        SideBar(
+            snapshotState = snapshotState,
+            onTextPlaced = onTextPlaced,
+            modifier = Modifier
+                .weight(0.32f)
+                .padding(vertical = 12.dp)
+        )
+        Column(
+            modifier = Modifier
+                .weight(0.68f)
+                .padding(horizontal = 8.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            SideBar(
+            FeaturedCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.25f),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
-                modifier = Modifier
-                    .weight(0.32f)
-                    .padding(vertical = 12.dp)
             )
-            Column(
+            ExperienceCard(
                 modifier = Modifier
-                    .weight(0.68f)
-                    .padding(horizontal = 8.dp, vertical = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                FeaturedCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.25f),
-                    snapshotState = snapshotState,
-                    onTextPlaced = onTextPlaced,
-                )
-                ExperienceCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    snapshotState = snapshotState,
-                    onTextPlaced = onTextPlaced,
-                )
-                EducationCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    snapshotState = snapshotState,
-                    onTextPlaced = onTextPlaced,
-                )
-            }
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+            )
+            EducationCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+            )
         }
     }
 }
