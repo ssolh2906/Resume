@@ -254,6 +254,14 @@ private fun LetterContents(
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
             )
+            TextFieldPDF(
+                tag = "bottomMessage",
+                fontSize = 12,
+                snapshotState = snapshotState,
+                modifier = Modifier.padding(horizontal = 24.dp).align(Alignment.End),
+                defaultString = "This resume is implemented with Jetpack Compose.",
+                onTextPlaced = onTextPlaced,
+            )
         }
     }
 }
