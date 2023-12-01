@@ -34,6 +34,8 @@ import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.data.TextInfo
 
 const val SIDE_ITEMS_PADDING = 8
+const val DESCRIPTION_FONT_SIZE = 10
+const val DESCRIPTION_PADDING = 40
 
 @Composable
 fun SideBar(
@@ -157,29 +159,35 @@ fun SideBar(
             TextFieldPDF(
                 tag = "thesis",
                 defaultString = "2022 Korean Computer Comprehensive",
-                fontSize = 10,
+                fontSize = DESCRIPTION_FONT_SIZE,
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
-                modifier = Modifier.padding(start = 40.dp)
+                modifier = Modifier.padding(start = DESCRIPTION_PADDING.dp)
             )
-            TextFieldPDF(
-                tag = "thesis",
-                defaultString = "Academic Conference",
-                fontSize = 10,
+            SideBarDescription(
+                string = "Academic Conference",
                 snapshotState = snapshotState,
-                onTextPlaced = onTextPlaced,
-                modifier = Modifier.padding(start = 40.dp)
+                onTextPlaced = onTextPlaced
             )
             SideBarItem(
                 string = "#1 Hackathon", snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
             ) {
                 Icon(
-                    painterResource(id = R.drawable.ico_award),
-                    contentDescription = "Icon Computer",
-                    modifier = Modifier.size(24.dp)
+                    painterResource(id = R.drawable.ico_trophy),
+                    contentDescription = "Icon trophy",
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(1.dp)
                 )
             }
+
+            SideBarDescription(
+                string ="2023 Silicon Valley Koreans",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+
             SideBarItem(
                 string = "Dean's List", snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
@@ -190,9 +198,24 @@ fun SideBar(
                     modifier = Modifier.size(24.dp)
                 )
             }
-            // hackathon
         }
     }
+}
+
+@Composable
+private fun SideBarDescription(
+    string: String,
+    snapshotState: State<SnapshotState>,
+    onTextPlaced: (String, TextInfo) -> Unit
+) {
+    TextFieldPDF(
+        tag = "thesis",
+        defaultString = string,
+        fontSize = DESCRIPTION_FONT_SIZE,
+        snapshotState = snapshotState,
+        onTextPlaced = onTextPlaced,
+        modifier = Modifier.padding(start = DESCRIPTION_PADDING.dp)
+    )
 }
 
 @Composable
@@ -244,36 +267,6 @@ fun SideBarItem(
             defaultString = string,
             onTextPlaced = onTextPlaced,
         )
-    }
-}
-
-
-@Composable
-fun SideBarItem(
-    strings: List<String>,
-    snapshotState: State<SnapshotState>,
-    onTextPlaced: (String, TextInfo) -> Unit,
-    icon: @Composable (() -> Unit)? = null
-) {
-    Row(
-        modifier = Modifier
-            .padding(top = SIDE_ITEMS_PADDING.dp, bottom = SIDE_ITEMS_PADDING.dp, start = 6.dp),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        icon?.invoke()
-        Spacer(modifier = Modifier.width(12.dp))
-        Column {
-            for (string in strings) {
-                TextFieldPDF(
-                    tag = string,
-                    fontSize = 13,
-                    snapshotState = snapshotState,
-                    defaultString = string,
-                    onTextPlaced = onTextPlaced,
-                )
-            }
-        }
     }
 }
 
