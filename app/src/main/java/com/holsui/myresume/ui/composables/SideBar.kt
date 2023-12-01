@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -113,6 +114,83 @@ fun SideBar(
             }
 
             SideBarDivider()
+
+            SideBarHeader(
+                string = "Language",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+
+            SideBarItem(
+                string = "English",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            ) {
+                Icon(Icons.Default.KeyboardArrowRight, null)
+            }
+            SideBarItem(
+                string = "Korean",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            ) {
+                Icon(Icons.Default.KeyboardArrowRight, null)
+            }
+
+            SideBarDivider()
+
+            SideBarHeader(
+                string = "Accomplishments",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+            SideBarItem(
+                string = "Thesis Accepted",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+            ) {
+                Icon(
+                    painterResource(id = R.drawable.ico_paper),
+                    contentDescription = "Icon paper",
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+            TextFieldPDF(
+                tag = "thesis",
+                defaultString = "2022 Korean Computer Comprehensive",
+                fontSize = 10,
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+                modifier = Modifier.padding(start = 40.dp)
+            )
+            TextFieldPDF(
+                tag = "thesis",
+                defaultString = "Academic Conference",
+                fontSize = 10,
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+                modifier = Modifier.padding(start = 40.dp)
+            )
+            SideBarItem(
+                string = "#1 Hackathon", snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+            ) {
+                Icon(
+                    painterResource(id = R.drawable.ico_award),
+                    contentDescription = "Icon Computer",
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+            SideBarItem(
+                string = "Dean's List", snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+            ) {
+                Icon(
+                    painterResource(id = R.drawable.ico_award),
+                    contentDescription = "Icon Award",
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+            // hackathon
         }
     }
 }
@@ -166,6 +244,36 @@ fun SideBarItem(
             defaultString = string,
             onTextPlaced = onTextPlaced,
         )
+    }
+}
+
+
+@Composable
+fun SideBarItem(
+    strings: List<String>,
+    snapshotState: State<SnapshotState>,
+    onTextPlaced: (String, TextInfo) -> Unit,
+    icon: @Composable (() -> Unit)? = null
+) {
+    Row(
+        modifier = Modifier
+            .padding(top = SIDE_ITEMS_PADDING.dp, bottom = SIDE_ITEMS_PADDING.dp, start = 6.dp),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        icon?.invoke()
+        Spacer(modifier = Modifier.width(12.dp))
+        Column {
+            for (string in strings) {
+                TextFieldPDF(
+                    tag = string,
+                    fontSize = 13,
+                    snapshotState = snapshotState,
+                    defaultString = string,
+                    onTextPlaced = onTextPlaced,
+                )
+            }
+        }
     }
 }
 
