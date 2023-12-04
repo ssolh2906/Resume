@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.util.Log
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -22,9 +23,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -166,6 +170,8 @@ fun ResumeScreen(
                                 view.clearFocus()
                                 resumeScreenListener.onGeneratePDFButtonClick()
                             },
+                            colors = ButtonDefaults.outlinedButtonColors(),
+                            border = BorderStroke(width =1.dp, color = MaterialTheme.colorScheme.primary)
                         ) {
                             Icon(imageVector = Icons.Default.ExitToApp, contentDescription = null)
                             Text(text = "PDF")
@@ -258,7 +264,9 @@ private fun LetterContents(
                 tag = "bottomMessage",
                 fontSize = 12,
                 snapshotState = snapshotState,
-                modifier = Modifier.padding(horizontal = 24.dp).align(Alignment.End),
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+                    .align(Alignment.End),
                 defaultString = "This resume is implemented with Jetpack Compose.",
                 onTextPlaced = onTextPlaced,
             )
