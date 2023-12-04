@@ -1,14 +1,18 @@
 package com.holsui.myresume.ui.composables
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
@@ -19,6 +23,7 @@ import com.holsui.myresume.ui.composables.carditems.ExperienceItem
 
 private const val CARD_ELEVATION = 3
 private const val CARD_TITLE_SIZE = 18
+private const val FEATURED_CONTENT_SIZE = 13
 
 @Composable
 fun FeaturedCard(
@@ -32,14 +37,34 @@ fun FeaturedCard(
         color = Color(0xFFFEF7FF),
         shadowElevation = CARD_ELEVATION.dp
     ) {
-        TextFieldPDF(
-            tag = "FeaturedCardTitle",
-            fontSize = CARD_TITLE_SIZE,
-            defaultString = "FEATURED",
-            snapshotState = snapshotState,
-            onTextPlaced = onTextPlaced,
-            isBold = true
-        )
+        Column(modifier = Modifier.fillMaxWidth().padding(4.dp).padding(start = 8.dp)) {
+            TextFieldPDF(
+                tag = "FeaturedCardTitle",
+                fontSize = 14,
+                defaultString = "\"PASSIONATE, ADVENTUROUS, PROACTIVE PROGRAMMER\"",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+                isBold = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            val featuredList = listOf<String>(
+                "1yr+ experienced android programmer with strong foundation",
+                "Such as OOP, Multithreading, Algorithm, Data Structure",
+                "Continuously learning and evolving as a programmer",
+                "Migration to Declarative UI, Multi Module App",
+                "Competitive. Winning Hackathon, Thesis accepted at academy"
+            )
+            for (item in featuredList) {
+                TextFieldPDF(
+                    tag = "featured$item",
+                    fontSize = FEATURED_CONTENT_SIZE,
+                    snapshotState = snapshotState,
+                    defaultString = item,
+                    onTextPlaced = onTextPlaced
+                )
+            }
+        }
     }
 }
 
@@ -81,13 +106,16 @@ fun ExperienceCard(
                     DotDescription("using APIs as AndroidX Test, Espresso & Compose Test", false),
                     ExpSpecHeader("Team Collaboration"),
                     DotDescription("Established a reputation as a most communicative team member,"),
-                    DotDescription("consistently initiating and participating in productive discussions.", false),
+                    DotDescription(
+                        "consistently initiating and participating in productive discussions.",
+                        false
+                    ),
                     DotDescription("Applied mathematical background to optimize features, solve complex problems "),
                     DotDescription("Bridged the gap between development and design."),
                 ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
-                description = "AUG 22 - OCT 23, Android Developer",
+                description = "AUG 22 - OCT 23, Android Developer, SNS Application with 100K+ Members",
             )
             ExperienceItem(
                 associationName = "Gazzi Labs (AI labs)",
@@ -138,3 +166,16 @@ fun EducationCard(
     }
 }
 
+@SuppressLint("UnrememberedMutableState")
+@Preview
+@Composable
+fun PreviewFeatured() {
+    FeaturedCard(
+        snapshotState = mutableStateOf(SnapshotState.STATE_IDLE),
+        onTextPlaced = { _, _ ->
+        },
+        modifier = Modifier
+            .height(250.dp)
+            .fillMaxWidth()
+    )
+}

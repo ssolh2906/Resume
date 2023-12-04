@@ -156,16 +156,23 @@ fun SideBar(
                     modifier = Modifier.size(24.dp)
                 )
             }
-            TextFieldPDF(
-                tag = "thesis",
-                defaultString = "2022 Korean Computer Comprehensive",
-                fontSize = DESCRIPTION_FONT_SIZE,
+            SideBarDescription(
+                string = "2022 Korean Computer Comprehensive",
                 snapshotState = snapshotState,
-                onTextPlaced = onTextPlaced,
-                modifier = Modifier.padding(start = DESCRIPTION_PADDING.dp)
+                onTextPlaced = onTextPlaced
             )
             SideBarDescription(
                 string = "Academic Conference",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+            SideBarDescription(
+                string = "Smart farm water management system",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+            SideBarDescription(
+                string = "using weight sensors",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
@@ -190,6 +197,11 @@ fun SideBar(
 
             SideBarDescription(
                 string ="2023 요즘 애들 MZ's Hackathon",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+            SideBarDescription(
+                string ="UI/UX Improvement using location",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
