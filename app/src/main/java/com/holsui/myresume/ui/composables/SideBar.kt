@@ -1,12 +1,15 @@
 package com.holsui.myresume.ui.composables
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -190,18 +193,18 @@ fun SideBar(
             }
 
             SideBarDescription(
-                string ="Silicon Valley Koreans",
+                string = "Silicon Valley Koreans",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
 
             SideBarDescription(
-                string ="2023 요즘 애들 MZ's Hackathon",
+                string = "2023 요즘 애들 MZ's Hackathon",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
             SideBarDescription(
-                string ="UI/UX Improvement using location",
+                string = "UI/UX Improvement using location",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
@@ -215,6 +218,64 @@ fun SideBar(
                     contentDescription = "Icon Award",
                     modifier = Modifier.size(24.dp)
                 )
+            }
+            SideBarDivider()
+            Surface(
+                color = Color.White, modifier = Modifier
+                    .fillMaxSize()
+                    .padding(12.dp),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Column {
+                    TextFieldPDF(
+                        tag = "bottomMessage",
+                        fontSize = 10,
+                        snapshotState = snapshotState,
+                        defaultString = "This resume is implemented with",
+                        onTextPlaced = onTextPlaced,
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .padding(top = 4.dp)
+                    )
+                    TextFieldPDF(
+                        tag = "bottomMessage",
+                        fontSize = 10,
+                        snapshotState = snapshotState,
+                        defaultString = "Android SDK & Jetpack Compose",
+                        onTextPlaced = onTextPlaced,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth()
+                            .padding(horizontal = 8.dp, vertical = 4.dp)
+                    ) {
+                        Column {
+                            TextFieldPDF(
+                                tag = "check out project",
+                                fontSize = 12,
+                                snapshotState = snapshotState,
+                                onTextPlaced = onTextPlaced,
+                                defaultString = "CHECK OUT",
+                                isBold = true
+                            )
+
+                            TextFieldPDF(
+                                tag = "check out project",
+                                fontSize = 12,
+                                snapshotState = snapshotState,
+                                onTextPlaced = onTextPlaced,
+                                defaultString = "Project Resume",
+                                isBold = true
+                            )
+                        }
+                        Image(
+                            painter = painterResource(id = R.drawable.qr_project),
+                            contentDescription = "QR code for project",
+                        )
+                    }
+                }
             }
         }
     }
