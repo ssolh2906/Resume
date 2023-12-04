@@ -183,7 +183,13 @@ fun SideBar(
             }
 
             SideBarDescription(
-                string ="2023 Silicon Valley Koreans",
+                string ="Silicon Valley Koreans",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+
+            SideBarDescription(
+                string ="2023 요즘 애들 MZ's Hackathon",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
