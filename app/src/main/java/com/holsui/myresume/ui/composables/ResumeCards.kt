@@ -37,7 +37,10 @@ fun FeaturedCard(
         color = Color(0xFFFEF7FF),
         shadowElevation = CARD_ELEVATION.dp
     ) {
-        Column(modifier = Modifier.fillMaxWidth().padding(4.dp).padding(start = 8.dp)) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp)
+            .padding(start = 8.dp)) {
             TextFieldPDF(
                 tag = "FeaturedCardTitle",
                 fontSize = 14,
@@ -49,11 +52,12 @@ fun FeaturedCard(
             )
 
             val featuredList = listOf<String>(
-                "1yr+ experienced android programmer with strong foundation",
-                "Such as OOP, Multithreading, Algorithm, Data Structure",
-                "Continuously learning and evolving as a programmer",
-                "Migration to Declarative UI, Multi Module App",
-                "Competitive. Winning Hackathon, Thesis accepted at academy"
+                "Android Programmer with 1yr+ experience and robust foundation in key",
+                "areas such as OOP, Multi-threading, Algorithms, Data Structure, and more.",
+                "Committed to continuous learning and evolution as a programmer.",
+                "Successfully implemented Declarative UI and Multi-module concepts,",
+                "demonstrating adaptability and innovation.",
+                "Competitive Spirit ; Hackathon champ and CS accepted thesis!"
             )
             for (item in featuredList) {
                 TextFieldPDF(

@@ -74,7 +74,7 @@ fun EducationItem(
                         fontSize = 12,
                         snapshotState = snapshotState,
                         onTextPlaced = onTextPlaced,
-                        modifier = Modifier.padding(start = 4.dp, bottom = 4.dp)
+                        modifier = Modifier.padding(start = 4.dp)
                     )
                 }
                 BSBox(
@@ -82,7 +82,7 @@ fun EducationItem(
                     onTextPlaced = onTextPlaced,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 8.dp, top = 8.dp, bottom = 8.dp)
+                        .padding(start = 8.dp, top = 8.dp, bottom = 4.dp)
                 )
             }
             CoursesBox(
@@ -92,7 +92,6 @@ fun EducationItem(
                     .fillMaxWidth()
                     .padding(end = 8.dp)
             )
-
         }
     }
 }
@@ -113,7 +112,7 @@ fun BSBox(
             onTextPlaced = onTextPlaced,
             isBold = true
         )
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(4.dp))
         BSHeader("Bio", snapshotState, onTextPlaced)
         TextFieldPDF(
             tag = "BSTitle BT",
@@ -134,11 +133,11 @@ private fun BSHeader(
     onTextPlaced: (String, TextInfo) -> Unit
 ) {
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        Icon(painterResource(id = R.drawable.ico_degree), "icon degree", Modifier.size(20.dp))
+        Icon(painterResource(id = R.drawable.ico_degree), "icon degree", Modifier.size(18.dp))
         TextFieldPDF(
             tag = "BSHeader $tag",
             defaultString = "Bachelor's Degree in",
-            fontSize = 14,
+            fontSize = 12,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced
         )
@@ -154,7 +153,7 @@ fun CoursesBox(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 24.dp),
+            .padding(top = 12.dp),
         color = Color.Transparent,
     ) {
         SpeechBubble(
@@ -167,7 +166,7 @@ fun CoursesBox(
                     TextFieldPDF(
                         tag = "CoursesHeader",
                         defaultString = "Courses",
-                        fontSize = 16,
+                        fontSize = 13,
                         snapshotState = snapshotState,
                         onTextPlaced = onTextPlaced,
                         isBold = true,
@@ -191,7 +190,7 @@ fun CoursesBox(
                     TextFieldPDF(
                         tag = "courses rear",
                         defaultString = "AND MORE...",
-                        fontSize = 12,
+                        fontSize = 10,
                         modifier = Modifier.align(Alignment.End),
                         snapshotState = snapshotState,
                         onTextPlaced = onTextPlaced
@@ -214,7 +213,7 @@ fun Course(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Icon(Icons.Default.Done, null, Modifier.size(16.dp))
+        Icon(Icons.Default.Done, null, Modifier.size(12.dp))
         TextFieldPDF(
             tag = "CoursesContent$course",
             defaultString = course,

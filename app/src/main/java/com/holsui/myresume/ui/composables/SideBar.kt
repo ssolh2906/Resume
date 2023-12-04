@@ -167,12 +167,12 @@ fun SideBar(
                 onTextPlaced = onTextPlaced
             )
             SideBarDescription(
-                string = "Smart farm water management system",
+                string = "\'Smart farm water management system",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
             SideBarDescription(
-                string = "using weight sensors",
+                string = "using weight sensors\'",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
