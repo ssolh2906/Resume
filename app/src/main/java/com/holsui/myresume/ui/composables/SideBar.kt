@@ -36,7 +36,7 @@ import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.data.TextInfo
 
-const val SIDE_ITEMS_PADDING = 8
+const val SIDE_ITEMS_PADDING = 6
 const val DESCRIPTION_FONT_SIZE = 10
 const val DESCRIPTION_PADDING = 40
 
@@ -148,46 +148,18 @@ fun SideBar(
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
+
             SideBarItem(
-                string = "Thesis Accepted",
+                string = "#1 Hackathon",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
-            ) {
-                Icon(
-                    painterResource(id = R.drawable.ico_paper),
-                    contentDescription = "Icon paper",
-                    modifier = Modifier.size(24.dp)
-                )
-            }
-            SideBarDescription(
-                string = "2022 Korean Computer Comprehensive",
-                snapshotState = snapshotState,
-                onTextPlaced = onTextPlaced
-            )
-            SideBarDescription(
-                string = "Academic Conference",
-                snapshotState = snapshotState,
-                onTextPlaced = onTextPlaced
-            )
-            SideBarDescription(
-                string = "\'Smart farm water management system",
-                snapshotState = snapshotState,
-                onTextPlaced = onTextPlaced
-            )
-            SideBarDescription(
-                string = "using weight sensors\'",
-                snapshotState = snapshotState,
-                onTextPlaced = onTextPlaced
-            )
-            SideBarItem(
-                string = "#1 Hackathon", snapshotState = snapshotState,
-                onTextPlaced = onTextPlaced,
+                date = "NOV 18, 2023"
             ) {
                 Icon(
                     painterResource(id = R.drawable.ico_trophy),
                     contentDescription = "Icon trophy",
                     modifier = Modifier
-                        .size(24.dp)
+                        .size(20.dp)
                         .padding(1.dp)
                 )
             }
@@ -210,13 +182,46 @@ fun SideBar(
             )
 
             SideBarItem(
+                string = "Thesis Published",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced,
+                date = "JUN 30, 2022"
+            ) {
+                Icon(
+                    painterResource(id = R.drawable.ico_paper),
+                    contentDescription = "Icon paper",
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+            SideBarDescription(
+                string = "2022 Korean Computer Comprehensive",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+            SideBarDescription(
+                string = "Academic Conference",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+            SideBarDescription(
+                string = "\'Smart farm water management system",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+            SideBarDescription(
+                string = "using weight sensors\'",
+                snapshotState = snapshotState,
+                onTextPlaced = onTextPlaced
+            )
+
+            SideBarItem(
                 string = "Dean's List", snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
             ) {
                 Icon(
                     painterResource(id = R.drawable.ico_award),
                     contentDescription = "Icon Award",
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(20.dp)
                 )
             }
             SideBarDivider()
@@ -248,7 +253,8 @@ fun SideBar(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
                             .padding(horizontal = 8.dp, vertical = 4.dp)
                     ) {
                         Column {
@@ -315,7 +321,7 @@ fun SideBarHeader(
     ) {
         TextFieldPDF(
             tag = string,
-            fontSize = 16,
+            fontSize = 15,
             snapshotState = snapshotState,
             defaultString = string,
             onTextPlaced = onTextPlaced,
@@ -329,7 +335,8 @@ fun SideBarItem(
     string: String,
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit,
-    icon: @Composable (() -> Unit)? = null
+    date: String? = null,
+    icon: @Composable (() -> Unit)? = null,
 ) {
     Row(
         modifier = Modifier
@@ -339,13 +346,24 @@ fun SideBarItem(
     ) {
         icon?.invoke()
         Spacer(modifier = Modifier.width(12.dp))
-        TextFieldPDF(
-            tag = string,
-            fontSize = 13,
-            snapshotState = snapshotState,
-            defaultString = string,
-            onTextPlaced = onTextPlaced,
-        )
+        Column {
+            TextFieldPDF(
+                tag = string,
+                fontSize = 13,
+                snapshotState = snapshotState,
+                defaultString = string,
+                onTextPlaced = onTextPlaced,
+            )
+            date?.let {
+                TextFieldPDF(
+                    tag = string + it,
+                    fontSize = 10,
+                    snapshotState = snapshotState,
+                    defaultString = it,
+                    onTextPlaced = onTextPlaced,
+                )
+            }
+        }
     }
 }
 
