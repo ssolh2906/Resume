@@ -228,7 +228,7 @@ fun SideBar(
             ) {
                 Column {
                     TextFieldPDF(
-                        tag = "bottomMessage",
+                        tag = "bottomMessage1",
                         fontSize = 10,
                         snapshotState = snapshotState,
                         defaultString = "This resume is implemented with",
@@ -238,7 +238,7 @@ fun SideBar(
                             .padding(top = 4.dp)
                     )
                     TextFieldPDF(
-                        tag = "bottomMessage",
+                        tag = "bottomMessage2",
                         fontSize = 10,
                         snapshotState = snapshotState,
                         defaultString = "Android SDK & Jetpack Compose",
@@ -253,7 +253,7 @@ fun SideBar(
                     ) {
                         Column {
                             TextFieldPDF(
-                                tag = "check out project",
+                                tag = "check out project1",
                                 fontSize = 12,
                                 snapshotState = snapshotState,
                                 onTextPlaced = onTextPlaced,
@@ -262,7 +262,7 @@ fun SideBar(
                             )
 
                             TextFieldPDF(
-                                tag = "check out project",
+                                tag = "check out project2",
                                 fontSize = 12,
                                 snapshotState = snapshotState,
                                 onTextPlaced = onTextPlaced,
@@ -288,7 +288,7 @@ private fun SideBarDescription(
     onTextPlaced: (String, TextInfo) -> Unit
 ) {
     TextFieldPDF(
-        tag = "thesis",
+        tag = "side bar desc $string",
         defaultString = string,
         fontSize = DESCRIPTION_FONT_SIZE,
         snapshotState = snapshotState,
