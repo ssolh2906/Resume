@@ -23,18 +23,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.R
 import com.holsui.myresume.data.SnapshotState
 import com.holsui.myresume.TextFieldPDF
 import com.holsui.myresume.data.TextInfo
+import com.holsui.myresume.ui.composables.Dot
 import com.holsui.myresume.ui.composables.SpeechBubble
 
 @Composable
 fun EducationItem(
     associationName: String,
-    description: String? = null,
+    description: List<String>? = null,
     modifier: Modifier = Modifier,
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit,
@@ -67,14 +70,19 @@ fun EducationItem(
                         .padding(4.dp),
                     isBold = true
                 )
-                description?.let {
+                description?.forEach {
                     TextFieldPDF(
                         tag = associationName + "Description",
                         defaultString = it,
-                        fontSize = 12,
+                        fontSize = 11,
                         snapshotState = snapshotState,
                         onTextPlaced = onTextPlaced,
-                        modifier = Modifier.padding(start = 4.dp)
+                        modifier = Modifier.padding(start = 4.dp),
+                        textStyle = TextStyle.Default.copy(
+                            platformStyle = PlatformTextStyle(
+                                includeFontPadding = false
+                            )
+                        )
                     )
                 }
                 BSBox(
@@ -136,7 +144,7 @@ private fun BSHeader(
         Icon(painterResource(id = R.drawable.ico_degree), "icon degree", Modifier.size(18.dp))
         TextFieldPDF(
             tag = "BSHeader $tag",
-            defaultString = "Bachelor's Degree in",
+            defaultString = "Bachelor's Degree",
             fontSize = 12,
             snapshotState = snapshotState,
             onTextPlaced = onTextPlaced
@@ -162,6 +170,7 @@ fun CoursesBox(
                     modifier = Modifier
                         .wrapContentHeight()
                         .fillMaxWidth()
+                        .padding(horizontal = 12.dp)
                 ) {
                     TextFieldPDF(
                         tag = "CoursesHeader",
@@ -209,20 +218,14 @@ fun Course(
     snapshotState: State<SnapshotState>,
     onTextPlaced: (String, TextInfo) -> Unit
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        Icon(Icons.Default.Done, null, Modifier.size(12.dp))
-        TextFieldPDF(
-            tag = "CoursesContent$course",
-            defaultString = course,
-            fontSize = 11,
-            snapshotState = snapshotState,
-            onTextPlaced = onTextPlaced,
-            modifier = Modifier.wrapContentSize()
-        )
-    }
+    TextFieldPDF(
+        tag = "CoursesContent$course",
+        defaultString = course,
+        fontSize = 11,
+        snapshotState = snapshotState,
+        onTextPlaced = onTextPlaced,
+        modifier = Modifier.wrapContentSize()
+    )
 }
 
 @SuppressLint("UnrememberedMutableState")

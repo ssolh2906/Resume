@@ -16,6 +16,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.holsui.myresume.data.SnapshotState
@@ -69,18 +71,23 @@ fun FeaturedCard(
                 "\n",
                 "Committed to continuous learning and evolution as a programmer.",
                 "\n",
-                "Competitive Spirit ; Hackathon champion and Published CS thesis!"
+                "Competitive Spirit; Hackathon champion and Published CS thesis!"
             )
             for (item in featuredList) {
                 if (item == "\n") {
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
                 } else {
                     TextFieldPDF(
                         tag = "featured$item",
                         fontSize = FEATURED_CONTENT_SIZE,
                         snapshotState = snapshotState,
                         defaultString = item,
-                        onTextPlaced = onTextPlaced
+                        onTextPlaced = onTextPlaced,
+                        textStyle = TextStyle.Default.copy(
+                            platformStyle = PlatformTextStyle(
+                                includeFontPadding = false
+                            )
+                        )
                     )
                 }
             }
@@ -117,21 +124,21 @@ fun ExperienceCard(
                 checkBoxItems = listOf("Kotlin", "AndroidSDK", "JetpackCompose", "MultiThreading"),
                 dotItems = listOf(
                     ExpSpecHeader("Dev Performance"),
-                    DotDescription("Accelerated UI development with Jetpack Compose"),
-                    DotDescription("Reduced build time by 30+% using multi-modularization"),
+                    DotDescription("Accelerated UI development with Jetpack Compose."),
+                    DotDescription("Reduced build time by 30+% using multi-modularization."),
                     ExpSpecHeader("Testable / Maintainable App"),
-                    DotDescription("Ensured app maintainability with Clean Architecture principles "),
-                    DotDescription("Increased app flexibility with Dependency injection & Dependency inversion "),
-                    DotDescription("Implemented Unit & Instrumented tests "),
-                    DotDescription("using APIs as AndroidX Test, Espresso & Compose Test", false),
+                    DotDescription("Ensured app maintainability with Clean Architecture principles."),
+                    DotDescription("Increased app flexibility with Dependency injection & Dependency inversion."),
+                    DotDescription("Implemented Unit & Instrumented tests,"),
+                    DotDescription("using APIs as AndroidX Test, Espresso & Compose Test.", false),
                     ExpSpecHeader("Team Collaboration"),
-                    DotDescription("Established a reputation as a most communicative team member,"),
+                    DotDescription("Established a reputation as a great communicator & peer reviewer,"),
                     DotDescription(
                         "consistently initiating and participating in productive discussions.",
                         false
                     ),
-                    DotDescription("Applied mathematical background to optimize features, solve complex problems "),
-                    DotDescription("Bridged the gap between development and design."),
+                    DotDescription("Applied mathematical background to optimize features, solve complex problems."),
+                    DotDescription("Bridged the gap between developers and designers."),
                 ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
@@ -141,8 +148,8 @@ fun ExperienceCard(
                 associationName = "Gazzi Labs (AI labs)",
                 checkBoxItems = listOf("Python", "Batch Programming"),
                 dotItems = listOf(
-                    DotDescription("Automated Daily Summary using Python, Saving 1hr+/day for all other interns"),
-                    DotDescription("Transformed onboarding for non-tech interns, cutting orientation time from 8 to 2 hours"),
+                    DotDescription("Automated Daily Summary using Python, Saving 1hr+/day for all other interns."),
+                    DotDescription("Transformed onboarding for non-tech interns, cutting orientation time from 8 to 2 hours."),
                 ),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
@@ -178,7 +185,7 @@ fun EducationCard(
             )
             EducationItem(
                 associationName = "Kyung Hee University, South Korea",
-                description = "Graduated FEB 23, GPA 95.4%",
+                description = listOf( "Graduated FEB 2023","GPA 95.4% (≃ Magna Cum Laude)"),
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )

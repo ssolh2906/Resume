@@ -40,6 +40,7 @@ import com.holsui.myresume.data.ExpSpecification
 import com.holsui.myresume.data.ExpSpecification.DotDescription
 import com.holsui.myresume.data.ExpSpecification.ExpSpecHeader
 import com.holsui.myresume.data.TextInfo
+import com.holsui.myresume.ui.composables.Dot
 
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -136,13 +137,7 @@ fun DotDescription(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(horizontal = 4.dp)
     ) {
-        Surface(
-            shape = CircleShape,
-            color = if (dotVisible) Gray else Transparent,
-            modifier = Modifier
-                .size(4.dp)
-                .offset(y = 1.dp)
-        ) {}
+        Dot(dotVisible)
         Spacer(modifier = Modifier.width(8.dp))
         TextFieldPDF(
             tag = "dot item $description",

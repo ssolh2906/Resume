@@ -68,7 +68,7 @@ fun SideBar(
                     contentDescription = "Icon Call"
                 )
             }
-            SideBarItem("669)-271-2586", snapshotState, onTextPlaced) {
+            SideBarItem("669-271-2586", snapshotState, onTextPlaced) {
                 Icon(
                     Icons.Default.Call,
                     modifier = Modifier.size(24.dp),
