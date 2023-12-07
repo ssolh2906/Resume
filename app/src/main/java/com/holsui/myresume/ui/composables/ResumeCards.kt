@@ -1,16 +1,20 @@
 package com.holsui.myresume.ui.composables
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,36 +41,48 @@ fun FeaturedCard(
         color = Color(0xFFFEF7FF),
         shadowElevation = CARD_ELEVATION.dp
     ) {
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp)
-            .padding(start = 8.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp)
+                .padding(start = 8.dp, top = 4.dp),
+//            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
             TextFieldPDF(
                 tag = "FeaturedCardTitle",
-                fontSize = 14,
-                defaultString = "\"PASSIONATE, ADVENTUROUS, PROACTIVE PROGRAMMER\"",
+                fontSize = 15,
+                defaultString = "PASSIONATE, ADVENTUROUS, PROACTIVE PROGRAMMER",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
                 isBold = true,
                 modifier = Modifier.fillMaxWidth()
             )
 
-            val featuredList = listOf<String>(
-                "Android Programmer with 1yr+ experience and robust foundation in key",
+            Spacer(modifier = Modifier.height(6.dp))
+
+            val featuredList = listOf(
+                "Android programmer with 1yr+ experience and robust foundation in key",
                 "areas such as OOP, Multi-threading, Algorithms, Data Structure, and more.",
-                "Committed to continuous learning and evolution as a programmer.",
+                "\n",
                 "Successfully implemented Declarative UI and Multi-module concepts,",
                 "demonstrating adaptability and innovation.",
-                "Competitive Spirit ; Hackathon champ and CS accepted thesis!"
+                "\n",
+                "Committed to continuous learning and evolution as a programmer.",
+                "\n",
+                "Competitive Spirit ; Hackathon champion and Published CS thesis!"
             )
             for (item in featuredList) {
-                TextFieldPDF(
-                    tag = "featured$item",
-                    fontSize = FEATURED_CONTENT_SIZE,
-                    snapshotState = snapshotState,
-                    defaultString = item,
-                    onTextPlaced = onTextPlaced
-                )
+                if (item == "\n") {
+                    Spacer(modifier = Modifier.height(4.dp))
+                } else {
+                    TextFieldPDF(
+                        tag = "featured$item",
+                        fontSize = FEATURED_CONTENT_SIZE,
+                        snapshotState = snapshotState,
+                        defaultString = item,
+                        onTextPlaced = onTextPlaced
+                    )
+                }
             }
         }
     }
@@ -162,7 +178,7 @@ fun EducationCard(
             )
             EducationItem(
                 associationName = "Kyung Hee University, South Korea",
-                description = "Graduated FEB 23",
+                description = "Graduated FEB 23, GPA 95.4%",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced
             )
@@ -171,7 +187,7 @@ fun EducationCard(
 }
 
 @SuppressLint("UnrememberedMutableState")
-@Preview
+@Preview(widthDp = 450)
 @Composable
 fun PreviewFeatured() {
     FeaturedCard(
@@ -179,7 +195,6 @@ fun PreviewFeatured() {
         onTextPlaced = { _, _ ->
         },
         modifier = Modifier
-            .height(250.dp)
-            .fillMaxWidth()
+            .height(200.dp)
     )
 }

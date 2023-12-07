@@ -78,7 +78,7 @@ fun SideBar(
             SideBarDivider()
 
             SideBarHeader("Address", snapshotState, onTextPlaced)
-            SideBarItem("(95032) Los Gatos, CA, USA", snapshotState, onTextPlaced)
+            SideBarItem("Los Gatos, CA, USA", snapshotState, onTextPlaced)
 
             SideBarDivider()
 
@@ -185,7 +185,7 @@ fun SideBar(
                 string = "Thesis Published",
                 snapshotState = snapshotState,
                 onTextPlaced = onTextPlaced,
-                date = "JUN 30, 2022"
+                date = "JUN 30, 2022, Primary Author"
             ) {
                 Icon(
                     painterResource(id = R.drawable.ico_paper),
@@ -231,7 +231,7 @@ fun SideBar(
                     .padding(12.dp),
                 shape = RoundedCornerShape(16.dp)
             ) {
-                Column {
+                Column(verticalArrangement = Arrangement.SpaceEvenly) {
                     TextFieldPDF(
                         tag = "bottomMessage1",
                         fontSize = 10,
