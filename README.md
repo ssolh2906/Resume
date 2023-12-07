@@ -3,6 +3,9 @@
 This project implement an android app, that export resume PDF file of Solhee Tucker.
 You can edit text & Interact with some components.
 
+### Author
+@ssolh2906
+
 ## Output
 *PDF capture*
 
