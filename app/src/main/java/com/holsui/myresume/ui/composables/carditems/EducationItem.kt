@@ -72,7 +72,7 @@ fun EducationItem(
                 )
                 description?.forEach {
                     TextFieldPDF(
-                        tag = associationName + "Description",
+                        tag = associationName + it,
                         defaultString = it,
                         fontSize = 11,
                         snapshotState = snapshotState,
