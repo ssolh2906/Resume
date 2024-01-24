@@ -185,7 +185,7 @@ fun CoursesBox(
                         "OOP",
                         "DataStructure",
                         "Algorithm",
-                        "Mobile Programming",
+                        "Computer Architecture",
                         "Linux Operating System"
                     )
                     for (course in courseList) {

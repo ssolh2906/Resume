@@ -63,13 +63,11 @@ fun FeaturedCard(
             Spacer(modifier = Modifier.height(6.dp))
 
             val featuredList = listOf(
-                "Android programmer with 1yr+ experience and robust foundation in key",
+                "Software Engineer with 1yr+ experience and robust foundation in key",
                 "areas such as OOP, Multi-threading, Algorithms, Data Structure, and more.",
                 "\n",
-                "Successfully implemented Declarative UI and Multi-module concepts,",
-                "demonstrating adaptability and innovation.",
-                "\n",
                 "Committed to continuous learning and evolution as a programmer.",
+                "Looking for new enthusiasm.",
                 "\n",
                 "Competitive Spirit; Hackathon champion and Published CS thesis!"
             )
@@ -121,18 +119,17 @@ fun ExperienceCard(
             )
             ExperienceItem(
                 associationName = "Supergene.CO",
-                checkBoxItems = listOf("Kotlin", "AndroidSDK", "JetpackCompose", "MultiThreading"),
+                checkBoxItems = listOf("Kotlin", "Unit tests", "Agile development", "Multi threading"),
                 dotItems = listOf(
                     ExpSpecHeader("Dev Performance"),
-                    DotDescription("Accelerated UI development with Jetpack Compose."),
+                    DotDescription("Optimize memory usage by using Lifecycle-aware components"),
                     DotDescription("Reduced build time by 30+% using multi-modularization."),
                     ExpSpecHeader("Testable / Maintainable App"),
                     DotDescription("Ensured app maintainability with Clean Architecture principles."),
                     DotDescription("Increased app flexibility with Dependency injection & Dependency inversion."),
                     DotDescription("Implemented Unit & Instrumented tests,"),
-                    DotDescription("using APIs as AndroidX Test, Espresso & Compose Test.", false),
                     ExpSpecHeader("Team Collaboration"),
-                    DotDescription("Established a reputation as a great communicator & peer reviewer,"),
+                    DotDescription("Perfect fit for agile team; great communicator & peer reviewer,"),
                     DotDescription(
                         "consistently initiating and participating in productive discussions.",
                         false
@@ -146,8 +143,9 @@ fun ExperienceCard(
             )
             ExperienceItem(
                 associationName = "Gazzi Labs (AI labs)",
-                checkBoxItems = listOf("Python", "Batch Programming"),
+                checkBoxItems = listOf("Python", "PyTorch", "Batch programming"),
                 dotItems = listOf(
+                    DotDescription("Data preparation, Model evaluation"),
                     DotDescription("Automated Daily Summary using Python, Saving 1hr+/day for all other interns."),
                     DotDescription("Transformed onboarding for non-tech interns, cutting orientation time from 8 to 2 hours."),
                 ),
